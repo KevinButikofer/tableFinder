@@ -1,0 +1,7 @@
+{
+  "name": "tablefinder",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
