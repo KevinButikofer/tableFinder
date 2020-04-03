@@ -1,5 +1,5 @@
   <template>
-     <ion-list slot="top">
+     <ion-list>
     <ion-item>
       <ion-label>Pokémon Yellow</ion-label>
     </ion-item>
@@ -26,5 +26,4 @@ export default {
   }
 }
 </script>
-<style scoped>
-</style
+
