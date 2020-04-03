@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import Home from '../views/Home.vue'
 import { IonicVueRouter } from '@ionic/vue';
 
 Vue.use(IonicVueRouter);
@@ -11,7 +10,8 @@ export default new IonicVueRouter({
       {
           path: '/',
           name: 'home',
-          component: Home
+          component: () =>
+              import(/* webpackChunkName: "home" */ '@/views/Home.vue')
       },
       {
           path: '/about',
@@ -23,7 +23,7 @@ export default new IonicVueRouter({
         path: '/restaurantsview',
         name: 'restaurantsview',
         component: () =>
-        import(/* webpackChunkName: "about" */ '@/views/RestaurantsView.vue')
+        import(/* webpackChunkName: "restaurantsview" */ '@/views/RestaurantsView.vue')
       },
   ]
 });
