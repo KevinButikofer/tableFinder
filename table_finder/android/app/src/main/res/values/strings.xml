@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">tablefinder</string>
-    <string name="title_activity_main">tablefinder</string>
-    <string name="package_name">com.tablefinder.app</string>
-    <string name="custom_url_scheme">com.tablefinder.app</string>
-</resources>

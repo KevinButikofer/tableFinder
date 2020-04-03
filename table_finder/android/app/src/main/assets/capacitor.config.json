@@ -1,8 +1,0 @@
-{
-  "appId": "com.tablefinder.app",
-  "appName": "tablefinder",
-  "bundledWebRuntime": false,
-  "npmClient": "npm",
-  "webDir": "dist",
-  "cordova": {}
-}
