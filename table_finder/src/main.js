@@ -3,10 +3,10 @@ import App from './App.vue'
 import router from './router/index'
 
 
-import { IonicVueRouter } from "@ionic/vue";
-Vue.use(IonicVueRouter);
-
 Vue.config.productionTip = false;
+import Ionic from '@ionic/vue';
+import '@ionic/core/css/ionic.bundle.css';
+Vue.use(Ionic);
 
 new Vue({
   router,
