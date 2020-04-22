@@ -9,11 +9,11 @@
             <ion-col size="10">
                 <ion-item>
                     <ion-label position="floating">Localisation</ion-label>
-                    <ion-input :class="{textPos :isPosOK}" v-bind:value="localisation" @ionChange="localisation=$event.target.value"></ion-input>
+                    <ion-input  v-bind:style="{ color: activeColor}" v-bind:value="localisation" @ionChange="localisation=$event.target.value"></ion-input>
                 </ion-item>
             </ion-col>
             <ion-col size="2">
-                <ion-button color="light" @click="position">
+                <ion-button style="margin-top: 15px;" color="light" @click="position">
                     <ion-icon name="locate"></ion-icon>
                 </ion-button>
 
@@ -34,6 +34,7 @@
                 </ion-item>
             </ion-col>
         </ion-row>
+        {{localisation}}
     </form>
 
 </template>
@@ -46,13 +47,13 @@
         data() {
             return {
                 FOODSTYLE: FOODSTYLE,
-                isPosOK : false
+                activeColor : 'black'
             }
         },
         methods: {
             position(){
-                this.isPosOK = true
                 this.localisation = 'Position actuelle'
+                this.activeColor= '#3880ff'
             },
             showModal() {
                 this.$ionic.loadingController.create({
@@ -89,7 +90,7 @@
 
 <style scoped>
 .textPos{
-    --color:#3880ff;
+
 }
 
 </style>
