@@ -6,18 +6,24 @@
             </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col>
+            <ion-col size="10">
                 <ion-item>
                     <ion-label position="floating">Localisation</ion-label>
-                    <ion-input v-bind:value="localisation" @ionChange="localisation=$event.target.value"></ion-input>
+                    <ion-input :class="{textPos :isPosOK}" v-bind:value="localisation" @ionChange="localisation=$event.target.value"></ion-input>
                 </ion-item>
+            </ion-col>
+            <ion-col size="2">
+                <ion-button color="light" @click="position">
+                    <ion-icon name="locate"></ion-icon>
+                </ion-button>
+
             </ion-col>
         </ion-row>
         <ion-row>
             <ion-col>
                 <ion-item>
                     <ion-label>Food Style</ion-label>
-                    <ion-select interface="popover" @ionChange="foodStyle=$event.target.value">
+                    <ion-select multiple="true" id="select" @ionChange="foodStyle=$event.target.value">
                         <ion-select-option
                                 v-for="(item, index) in FOODSTYLE"
                                 :key="index"
@@ -28,8 +34,6 @@
                 </ion-item>
             </ion-col>
         </ion-row>
-        <h1>{{localisation}}</h1>
-        <h1>{{foodStyle}}</h1>
     </form>
 
 </template>
@@ -41,7 +45,25 @@
         name: "ClientInfo",
         data() {
             return {
-                FOODSTYLE: FOODSTYLE
+                FOODSTYLE: FOODSTYLE,
+                isPosOK : false
+            }
+        },
+        methods: {
+            position(){
+                this.isPosOK = true
+                this.localisation = 'Position actuelle'
+            },
+            showModal() {
+                this.$ionic.loadingController.create({
+                    duration: 5000,
+                    message: 'Please wait...',
+                    translucent: true,
+                    cssClass: 'custom-class custom-loading'
+                }).then(a => {
+                    a.present()
+
+                });
             }
         },
         computed: {
@@ -66,5 +88,8 @@
 </script>
 
 <style scoped>
+.textPos{
+    --color:#3880ff;
+}
 
 </style>
