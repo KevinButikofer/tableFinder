@@ -4,7 +4,7 @@
         <ion-content>
             <ion-grid>
 
-                <client-info/>
+                <ClientInfo/>
 
             </ion-grid>
             <ion-grid>

@@ -1,6 +1,6 @@
 const state = {
     localisation: '',
-    foodStyle: ''
+    foodStyle: []
 };
 const getters = {
     localisation: (state) => state.localisation,
