@@ -3,9 +3,7 @@
         <Header title="Find a table"/>
         <ion-content>
             <ion-grid>
-
                 <client-info/>
-
             </ion-grid>
         </ion-content>
     </ion-app>
