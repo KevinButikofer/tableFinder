@@ -15,7 +15,7 @@
             </ion-col>
             <ion-col size="2">
                 <ion-button style="margin-top: 15px;" color="light" @click="position">
-                    <img src="/images/icons/gpsOK.svg" alt="gpsOK">
+                    <img :src="isGpsOk ? linkGps[0]:linkGps[1]" style="width : 100% ; height : 100%" alt="gpsOK">
                 </ion-button>
 
             </ion-col>
@@ -35,7 +35,6 @@
                 </ion-item>
             </ion-col>
         </ion-row>
-{{latitude}}
     </form>
 
 </template>
@@ -49,17 +48,19 @@
         data() {
             return {
                 FOODSTYLE: FOODSTYLE,
-                activeColor: 'black'
+                activeColor: 'black',
+                linkGps:['/images/icons/gpsOK.svg','/images/icons/gpsNOK.svg'],
             }
         },
         methods: {
-            ...mapActions(['fetchLatitude','fetchLongitude']),
+            ...mapActions(['fetchLatitude','fetchLongitude','fetchIsGpsOk']),
             position() {
                 navigator.geolocation.getCurrentPosition(pos => {
                     this.localisation = 'Position actuelle'
                     this.activeColor = '#3880ff'
                     this.fetchLatitude(pos.coords.latitude)
                     this.fetchLongitude(pos.coords.longitude)
+                    this.fetchIsGpsOk(true)
                 }, err => {
                     console.log(err)
                     this.localisation = 'Erreur'
@@ -79,7 +80,7 @@
             }
         },
         computed: {
-            ...mapGetters(['latitude','longitude']),
+            ...mapGetters(['latitude','longitude','isGpsOk']),
             localisation: {
                 get() {
                     return this.$store.getters.localisation
@@ -95,7 +96,7 @@
                 set(value) {
                     this.$store.dispatch('fetchFoodStyle', value)
                 }
-            }
+            },
         }
     }
 </script>
