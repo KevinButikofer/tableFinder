@@ -7,7 +7,7 @@
             <ion-col col-6>
                 <ion-item>
                         <ion-label position="floating">Date</ion-label>
-                    <ion-datetime display-format="D MMM YYYY" :min="today" :max="maxDate"></ion-datetime>
+                    <ion-datetime v-bind:value="date" display-format="D MMM YYYY" :min="today" :max="maxDate"></ion-datetime>
                 </ion-item>
           </ion-col>
             <ion-col col-6>
