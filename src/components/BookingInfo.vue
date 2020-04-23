@@ -44,6 +44,7 @@
             return {
                today: new Date().toISOString(),
                startHour : new Date().toISOString(),
+               $_toHour : null,
             }
         },
          computed: {
@@ -55,34 +56,26 @@
                 }
             },
             toHour: {
-                get() {
-                    if (typeof this.value === 'undefined')
-                    {
-                        return new Date();
-                    }
-                        return this.value;
+                get() {                   
+                    return this.$data.$_toHour;
                 },
                 set(value) {
-                    this.value = value;
+                    this.$data.$_toHour = value;
+                    this.$emit('input', value);
                 }
 
             },
         },
          methods: {
         updateToHour: function () {
-
             var sH = new Date(this.startHour);
             var tH = new Date(this.toHour);
-            console.log("sh "+sH.getHours());
-            console.log("th "+tH.getHours());
             if(tH.getHours() < sH.getHours()+1)
             {
-                tH.setHours(sH.getHours()+3);
-                console.log("th after "+tH.getHours());
-                console.log("toHour "+ tH.toISOString());
+                tH.setHours(sH.getHours() + 1);
                 this.toHour = tH.toISOString();
-                console.log("toHour "+ tH.toISOString());
             }
+        
         }
     }
     }
