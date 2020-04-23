@@ -8,7 +8,7 @@
         <ion-row>
             <ion-col size="10">
                 <ion-item>
-                    <ion-label position="floating">Localisation</ion-label>
+                    <ion-label position="floating">Location</ion-label>
                     <ion-input v-bind:style="{ color: activeColor}" v-bind:value="localisation"
                                @ionChange="localisation=$event.target.value"></ion-input>
                 </ion-item>
@@ -56,7 +56,7 @@
             ...mapActions(['fetchLatitude','fetchLongitude','fetchIsGpsOk']),
             position() {
                 navigator.geolocation.getCurrentPosition(pos => {
-                    this.localisation = 'Position actuelle'
+                    this.localisation = 'Current Location'
                     this.activeColor = '#3880ff'
                     this.fetchLatitude(pos.coords.latitude)
                     this.fetchLongitude(pos.coords.longitude)

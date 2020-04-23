@@ -5,7 +5,9 @@
             <ion-refresher slot="fixed" @ionRefresh="doRefresh($event)">
                 <ion-refresher-content></ion-refresher-content>
             </ion-refresher>
+            <RestaurantInfo/>
             <ResultsList/>
+
         </ion-content>
     </ion-app>
 </template>
@@ -13,6 +15,7 @@
 <script>
     import ResultsList from "../components/ResultsList";
     import Header from "../components/Header";
+    import RestaurantInfo from "../components/RestaurantInfo";
 
     export default {
         name: "About",
@@ -29,7 +32,8 @@
         },
         components: {
             ResultsList,
-            Header
+            Header,
+            RestaurantInfo,
         }
     }
 </script>
