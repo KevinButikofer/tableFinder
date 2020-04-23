@@ -13,7 +13,7 @@
             <ion-col col-6>
                 <ion-item>
                     <ion-label position="floating">People</ion-label>
-                    <ion-input type="number"></ion-input>
+                    <ion-input v-bind:value="peopleNumber" type="number"></ion-input>
                 </ion-item>
             </ion-col>
           </ion-row>
@@ -43,11 +43,45 @@
         data() {
             return {
                today: new Date().toISOString(),
-               startHour : new Date().toISOString(),
-               $_toHour : null,
+            //    startHour : new Date().toISOString(),
+            //    $_toHour : null,
+            //    peopleNumber : 0,
             }
         },
          computed: {
+            date: {
+                get() {
+                    return this.$store.getters.date
+                },
+                set(value) {
+                    this.$store.dispatch('fetchDate', value)
+                }
+            },
+            startHour: {
+                get() {
+                    return this.$store.getters.startHour
+                },
+                set(value) {
+                    this.$store.dispatch('fetchStartHour', value)
+                }
+            },
+            toHour: {
+                get() {
+                    return this.$store.getters.toHour
+                },
+                set(value) {
+                    this.$store.dispatch('fetchToHour', value)
+                    this.$emit('input', value);
+                }
+            },
+            peopleNumber: {
+                get() {
+                    return this.$store.getters.peopleNumber
+                },
+                set(value) {
+                    this.$store.dispatch('fetchPeopleNumber', value)
+                }
+            },
             maxDate: {
                 get() {
                     var max = new Date();
@@ -55,16 +89,16 @@
                     return max.toISOString();
                 }
             },
-            toHour: {
-                get() {                   
-                    return this.$data.$_toHour;
-                },
-                set(value) {
-                    this.$data.$_toHour = value;
-                    this.$emit('input', value);
-                }
+            // toHour: {
+            //     get() {                   
+            //         return this.$data.$_toHour;
+            //     },
+            //     set(value) {
+            //         this.$data.$_toHour = value;
+            //         this.$emit('input', value);
+            //     }
 
-            },
+            // }
         },
          methods: {
         updateToHour: function () {

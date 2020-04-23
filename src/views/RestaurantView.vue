@@ -6,13 +6,7 @@
                 <ion-refresher-content></ion-refresher-content>
             </ion-refresher>
             <ion-grid>
-
-                <ClientInfo/>
-
-            </ion-grid>
-            <ion-grid>
-
-                <booking-info/>
+                <SearchInfo/>
 
             </ion-grid>
         </ion-content>
@@ -20,9 +14,10 @@
 </template>
 
 <script>
-    import ClientInfo from "../components/ClientInfo";
+    // import ClientInfo from "../components/ClientInfo";
     import Header from "../components/Header";
-    import BookingInfo from "../components/BookingInfo";
+    // import BookingInfo from "../components/BookingInfo";
+    import SearchInfo from "../components/SearchInfo";
 
     export default {
         name: "RestaurantView",
@@ -38,9 +33,8 @@
             }
         },
         components: {
-            ClientInfo,
             Header,
-            BookingInfo
+            SearchInfo
         }
     }
 </script>

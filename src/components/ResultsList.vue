@@ -1,7 +1,7 @@
 <template>
     <ion-list>
         <ion-item
-                v-for="(item, index) in RESTAURANTS"
+                v-for="(item, index) in filteredRestaurant"
                 :key="index"
                 :value="item">
             <ion-thumbnail slot="start">
@@ -27,6 +27,7 @@
 <script>
     import {RESTAURANTS} from "../datas/restaurants";
     import {MAXNOTE} from "../datas/notes"
+    
 
     export default {
         name: "ResultList",
@@ -36,7 +37,27 @@
                 MAXNOTE: MAXNOTE
             }
         },
-        computed: {}
+        computed: {            
+            filteredRestaurant :
+            {
+                get(){
+                    var filteredRestaurant = [];
+                   RESTAURANTS.forEach((rest) => {
+                            // if(rest.place > this.$store.state.peopleNumber 
+                            // && rest.location == this.$store.state.location
+                            // && rest.foodStyle == this.$store.state.foodStyle)
+                            console.log(rest.city);
+                            console.log(this.$store.getters.localisation);
+                            if(rest.city == this.$store.getters.localisation) // && ((typeof(this.$store.state.foodStyle) != "undefined" & rest.foodStyle in this.$store.state.foodStyle) || this.$store.state.foodStyle.length < 1))
+                            {
+                                filteredRestaurant.push(rest);
+                            }
+                       }
+                   );                   
+                    return filteredRestaurant;
+                }
+            }
+        },
     }
 </script>
 
