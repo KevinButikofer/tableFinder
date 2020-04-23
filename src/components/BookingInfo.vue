@@ -36,7 +36,6 @@
                 </ion-item>
             </ion-col>
         </ion-row>
-        {{peopleNumber}}
     </ion-grid>
 
 </template>
