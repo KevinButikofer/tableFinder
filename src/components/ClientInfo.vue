@@ -9,7 +9,7 @@
             <ion-col size="10">
                 <ion-item>
                     <ion-label position="floating">Localisation</ion-label>
-                    <ion-input  v-bind:style="{ color: activeColor}" v-bind:value="localisation" @ionChange="localisation=$event.target.value"></ion-input>
+                    <ion-input v-bind:style="{ color: activeColor}" v-bind:value="localisation" @ionChange="localisation=$event.target.value"></ion-input>
                 </ion-item>
             </ion-col>
             <ion-col size="2">
@@ -41,7 +41,7 @@
 
 <script>
     import {FOODSTYLE} from "../datas/foodStyle";
-
+    
     export default {
         name: "ClientInfo",
         data() {
