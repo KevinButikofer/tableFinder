@@ -9,12 +9,13 @@
             <ion-col size="10">
                 <ion-item>
                     <ion-label position="floating">Localisation</ion-label>
-                    <ion-input v-bind:style="{ color: activeColor}" v-bind:value="localisation" @ionChange="localisation=$event.target.value"></ion-input>
+                    <ion-input v-bind:style="{ color: activeColor}" v-bind:value="localisation"
+                               @ionChange="localisation=$event.target.value"></ion-input>
                 </ion-item>
             </ion-col>
             <ion-col size="2">
                 <ion-button style="margin-top: 15px;" color="light" @click="position">
-                    <ion-icon name="locate"></ion-icon>
+                    <img src="/images/icons/gpsOK.svg" alt="gpsOK">
                 </ion-button>
 
             </ion-col>
@@ -34,26 +35,36 @@
                 </ion-item>
             </ion-col>
         </ion-row>
-        {{localisation}}
+{{latitude}}
     </form>
 
 </template>
 
 <script>
     import {FOODSTYLE} from "../datas/foodStyle";
-    
+    import {mapGetters, mapActions} from 'vuex'
+
     export default {
         name: "ClientInfo",
         data() {
             return {
                 FOODSTYLE: FOODSTYLE,
-                activeColor : 'black'
+                activeColor: 'black'
             }
         },
         methods: {
-            position(){
-                this.localisation = 'Position actuelle'
-                this.activeColor= '#3880ff'
+            ...mapActions(['fetchLatitude','fetchLongitude']),
+            position() {
+                navigator.geolocation.getCurrentPosition(pos => {
+                    this.localisation = 'Position actuelle'
+                    this.activeColor = '#3880ff'
+                    this.fetchLatitude(pos.coords.latitude)
+                    this.fetchLongitude(pos.coords.longitude)
+                }, err => {
+                    console.log(err)
+                    this.localisation = 'Erreur'
+                })
+
             },
             showModal() {
                 this.$ionic.loadingController.create({
@@ -68,6 +79,7 @@
             }
         },
         computed: {
+            ...mapGetters(['latitude','longitude']),
             localisation: {
                 get() {
                     return this.$store.getters.localisation
@@ -89,8 +101,8 @@
 </script>
 
 <style scoped>
-.textPos{
+    .textPos {
 
-}
+    }
 
 </style>
