@@ -5,6 +5,9 @@ const state = {
     startHour : new Date(),
     toHour : new Date(),
     peopeNumber : 0,
+    latitude: '',
+    longitude:'',
+    isGpsOk: false,
 };
 const getters = {
     localisation: (state) => state.localisation,
@@ -13,6 +16,9 @@ const getters = {
     startHour: (state) => state.startHour,
     toHour : (state) => state.toHour,
     peopeNumber : (state) => state.peopeNumber,
+    latitude: (state) => state.latitude,
+    longitude: (state) => state.longitude,
+    isGpsOk: (state) => state.isGpsOk
 };
 const actions = {
     async fetchLocalisation({commit}, loc) {
@@ -33,6 +39,15 @@ const actions = {
     async fetchPeopleNumber({commit}, peopleNumber) {
         commit('setPeopleNumber', peopleNumber)
     },
+    async fetchLatitude({commit}, lat) {
+        commit('setLatitude', lat)
+    },
+    async fetchLongitude({commit}, long) {
+        commit('setLongitude', long)
+    },
+    async fetchIsGpsOk({commit}, isOk) {
+        commit('setIsGpsOk', isOk)
+    },
 };
 const mutations = {
     setLocalisation: (state, loc) => (state.localisation = loc),
@@ -41,6 +56,9 @@ const mutations = {
     setStartHour: (state, hour) => (state.startHour = hour),
     setToHour: (state, hour) => (state.toHour = hour),
     setPeopleNumber: (state, peopeNumber) => (state.peopeNumber = peopeNumber),
+    setLatitude: (state, lat) => (state.latitude = lat),
+    setLongitude: (state, long) => (state.longitude = long),
+    setIsGpsOk: (state, isOK) => (state.isGpsOk = isOK),
 };
 
 export default {
