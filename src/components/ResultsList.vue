@@ -67,8 +67,9 @@
         {
             showRestaurant:function(rest)
             {
-                this.$store.dispatch("fetchSelectedRestaurant", rest)
-                console.log(this.$store.getters.selectedRestaurant)
+                this.$store.dispatch("fetchSelectedRestaurant", rest);
+                this.$router.push({name: 'RestaurantInfo'})
+                console.log(this.$store.getters.selectedRestaurant);
             }
         }
     }

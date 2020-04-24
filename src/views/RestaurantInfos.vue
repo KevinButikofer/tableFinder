@@ -2,7 +2,7 @@
     <ion-app>
         <ImageHeader/>
         <ion-content >
-        <h2>Restaurant name</h2>
+        <h2>{{ restaurant.name }}</h2>
             <BookingInfoCard/>
             <OccupationCard/>
             <LocationCard/>
@@ -18,6 +18,14 @@
 
     export default {
         name: "RestaurantInfos",
+        
+        computed: {
+             restaurant :{ 
+                get()  {
+                    return this.$store.getters.selectedRestaurant
+                }
+            },
+        },
         methods:{
             doRefresh(event) {
                 console.log('Begin async operation');
@@ -27,7 +35,8 @@
                     event.target.complete();
                 }, 2000);
 
-            },
+            },       
+           
         },
         components: {
             ImageHeader,

@@ -2,7 +2,7 @@
     <ion-header translucent no-border>
         <ion-toolbar>
             <ion-buttons slot="start">
-                <ion-button color="light">
+                <ion-button @click="$router.push({name: 'restaurant'})" color="light">
                     <ion-icon slot="start" name="arrow-back"></ion-icon>
                 </ion-button>
             </ion-buttons>
