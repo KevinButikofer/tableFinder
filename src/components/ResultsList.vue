@@ -1,9 +1,10 @@
 <template>
     <ion-list>
+    
         <ion-item
                 v-for="(item, index) in filteredRestaurant"
                 :key="index"
-                :value="item">
+                :value="item" @click="showRestaurant(item)">
             <ion-thumbnail slot="start">
                 <img :src="item.image">
             </ion-thumbnail>
@@ -62,6 +63,14 @@
                 }
             }
         },
+        methods:
+        {
+            showRestaurant:function(rest)
+            {
+                this.$store.dispatch("fetchSelectedRestaurant", rest)
+                console.log(this.$store.getters.selectedRestaurant)
+            }
+        }
     }
 </script>
 
