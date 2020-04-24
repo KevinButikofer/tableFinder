@@ -10,18 +10,13 @@ const routes = [
     name: 'Tab',
     component: Tabs,
     children:[{
-      path: 'home',
-      name: 'home',
-
-
-    }, {
-      path: 'about',
-      name: 'about',
+      path: 'booking',
+      name: 'booking',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       components: {
-        about: () =>
+        booking: () =>
             import(/* webpackChunkName: "tab1" */ "@/views/About.vue")
       },
     },{
@@ -31,7 +26,7 @@ const routes = [
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
     }]
-  },{ path: "/", redirect: "/tab/home" },
+  },{ path: "/", redirect: "/tab/booking" },
   {path:"/restaurantInfo", name: 'RestaurantInfo', component:RestInfo}
 ]
 
