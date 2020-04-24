@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import {IonicVueRouter} from "@ionic/vue";
 import Tabs from "../views/Tabs";
+import RestInfo from "../views/RestaurantInfos";
 Vue.use(IonicVueRouter)
 
 const routes = [
@@ -31,6 +32,7 @@ const routes = [
       // which is lazy-loaded when the route is visited.
     }]
   },{ path: "/", redirect: "/tab/home" },
+  {path:"/restaurantInfo", name: 'RestaurantInfo', component:RestInfo}
 ]
 
 const router = new IonicVueRouter({

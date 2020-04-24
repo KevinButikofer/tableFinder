@@ -1,11 +1,7 @@
 <template>
     <ion-card>
-        <ion-card-header>
-            <ion-card-title>Your Search</ion-card-title>
-        </ion-card-header>
-
         <ion-card-content>
-            You want a table for <b>{{peopleNumber}}</b> people in <b>{{localisation}}</b> the <b>{{date}}</b> at <b>{{hour}}</b>
+            Results for a table for <b>{{peopleNumber}}</b> people in <b>{{localisation}}</b> the <b>{{date}}</b> at <b>{{hour}}</b>
         </ion-card-content>
     </ion-card>
 </template>

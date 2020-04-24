@@ -1,1 +1,1 @@
-export const FOODSTYLE=['Italien', 'Indien','chinois','Francais','je sais pas','edes','ses']
+export const FOODSTYLE=['Italian', 'Indian','Chinese','French','Fast food','Thai','Mexican']
