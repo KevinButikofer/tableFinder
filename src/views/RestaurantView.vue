@@ -1,13 +1,24 @@
 <template>
     <ion-app>
-        <Header title="Find a table"/>
+        <Header v-show="!showResult" title="Find a table"/>
+        <ion-header v-show="showResult">
+        <ion-toolbar>
+            <ion-buttons slot="start">
+                    <ion-button @click="showResult = false">Back<ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+            </ion-buttons>
+        </ion-toolbar>
+        </ion-header>
+
         <ion-content>
             <ion-refresher slot="fixed" @ionRefresh="doRefresh($event)">
                 <ion-refresher-content></ion-refresher-content>
             </ion-refresher>
-            <ion-grid>
+            <ion-grid v-show="!showResult">
                 <SearchInfo/>
-
+            </ion-grid>
+            <ion-grid v-show="showResult">            
+                <RestaurantInfo/>
+                <ResultList/>
             </ion-grid>
         </ion-content>
     </ion-app>
@@ -18,9 +29,24 @@
     import Header from "../components/Header";
     // import BookingInfo from "../components/BookingInfo";
     import SearchInfo from "../components/SearchInfo";
+    import ResultList from "../components/ResultsList";
+    import RestaurantInfo from "../components/RestaurantInfo"
+
+
+   
 
     export default {
         name: "RestaurantView",
+        computed:
+        {
+            showResult :{  get(){
+                    return this.$store.getters.showResult
+                },
+                set(value){
+                    this.$store.dispatch('fetchShowResult', value);
+                }
+            }
+        },
         methods: {
             doRefresh(event) {
                 console.log('Begin async operation');
@@ -34,7 +60,9 @@
         },
         components: {
             Header,
-            SearchInfo
+            SearchInfo,
+            ResultList,
+            RestaurantInfo
         }
     }
 </script>

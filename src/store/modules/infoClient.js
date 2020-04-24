@@ -8,6 +8,7 @@ const state = {
     latitude: '',
     longitude:'',
     isGpsOk: false,
+    showResult: false,
 };
 const getters = {
     localisation: (state) => state.localisation,
@@ -18,7 +19,8 @@ const getters = {
     peopleNumber : (state) => state.peopleNumber,
     latitude: (state) => state.latitude,
     longitude: (state) => state.longitude,
-    isGpsOk: (state) => state.isGpsOk
+    isGpsOk: (state) => state.isGpsOk,
+    showResult: (state) => state.showResult
 };
 const actions = {
     async fetchLocalisation({commit}, loc) {
@@ -48,6 +50,9 @@ const actions = {
     async fetchIsGpsOk({commit}, isOk) {
         commit('setIsGpsOk', isOk)
     },
+    async fetchShowResult({commit}, isShowingResult) {
+        commit('setShowResult', isShowingResult)
+    },
 };
 const mutations = {
     setLocalisation: (state, loc) => (state.localisation = loc),
@@ -59,6 +64,7 @@ const mutations = {
     setLatitude: (state, lat) => (state.latitude = lat),
     setLongitude: (state, long) => (state.longitude = long),
     setIsGpsOk: (state, isOK) => (state.isGpsOk = isOK),
+    setShowResult: (state, isShowingResult) => (state.showResult = isShowingResult),
 };
 
 export default {

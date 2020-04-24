@@ -41,13 +41,17 @@
             filteredRestaurant :
             {
                 get(){
+                    if(this.$store.getters.localisation == "")
+                    {
+                        return RESTAURANTS
+                    }
                     var filteredRestaurant = [];
                    RESTAURANTS.forEach((rest) => {
                             // if(rest.place > this.$store.state.peopleNumber 
                             // && rest.location == this.$store.state.location
-                            // && rest.foodStyle == this.$store.state.foodStyle)
-                            console.log(rest.city);
-                            console.log(this.$store.getters.localisation);
+                            //  && rest.foodStyle == this.$store.state.foodStyle)
+                            // console.log(rest.city);
+                            // console.log(this.$store.getters.localisation);
                             if(rest.city == this.$store.getters.localisation) // && ((typeof(this.$store.state.foodStyle) != "undefined" & rest.foodStyle in this.$store.state.foodStyle) || this.$store.state.foodStyle.length < 1))
                             {
                                 filteredRestaurant.push(rest);
