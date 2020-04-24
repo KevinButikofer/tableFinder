@@ -1,15 +1,11 @@
 <template>
     <ion-app>
         <ion-tabs>
-            <ion-tab tab="home">
-                <Home/>
-            </ion-tab>
-
-            <ion-tab tab="booking">
+              <ion-tab tab="booking">
                 <ion-vue-router name="booking"></ion-vue-router>
             </ion-tab>
             <ion-tab tab="restaurant">
-                <RestaurantView/>
+                <ion-vue-router name="restaurant"></ion-vue-router>
             </ion-tab>
 
             <ion-tab-bar slot="bottom">
@@ -27,13 +23,9 @@
 </template>
 
 <script>
-    import RestaurantView from "./RestaurantView";
 
     export default {
         name: "Tabs",
-        components: {
-            RestaurantView
-        }
     }
 </script>
 
