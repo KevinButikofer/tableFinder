@@ -2,11 +2,14 @@
     <ion-app>
         <Header v-show="!showResult" title="Find a table"/>
         <ion-header v-show="showResult">
-        <ion-toolbar>
-            <ion-buttons slot="start">
-                    <ion-button @click="showResult = false">Back<ion-icon name="arrow-back-outline"></ion-icon></ion-button>
-            </ion-buttons>
-        </ion-toolbar>
+            <ion-toolbar color="primary">
+                <ion-buttons slot="start">
+                    <ion-button @click="showResult = false">
+                        <ion-icon slot="start" name="arrow-back"></ion-icon>
+                    </ion-button>
+
+                </ion-buttons>
+            </ion-toolbar>
         </ion-header>
 
         <ion-content>
@@ -16,7 +19,7 @@
             <ion-grid v-show="!showResult">
                 <SearchInfo/>
             </ion-grid>
-            <ion-grid v-show="showResult">            
+            <ion-grid v-show="showResult">
                 <RestaurantInfo/>
                 <ResultList/>
             </ion-grid>
@@ -33,20 +36,19 @@
     import RestaurantInfo from "../components/RestaurantInfo"
 
 
-   
-
     export default {
         name: "RestaurantView",
         computed:
-        {
-            showResult :{  get(){
-                    return this.$store.getters.showResult
-                },
-                set(value){
-                    this.$store.dispatch('fetchShowResult', value);
+            {
+                showResult: {
+                    get() {
+                        return this.$store.getters.showResult
+                    },
+                    set(value) {
+                        this.$store.dispatch('fetchShowResult', value);
+                    }
                 }
-            }
-        },
+            },
         methods: {
             doRefresh(event) {
                 console.log('Begin async operation');
