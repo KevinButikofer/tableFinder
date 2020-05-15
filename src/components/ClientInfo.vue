@@ -10,7 +10,7 @@
                 <ion-item>
                     <ion-label position="floating">Location</ion-label>
                     <ion-input v-bind:style="{ color: activeColor}" v-bind:value="localisation"
-                               @ionChange="localisation=$event.target.value"></ion-input>
+                               @ionChange="localisation=$event.target.value" @click="clearLocalisation"></ion-input>
                 </ion-item>
             </ion-col>
             <ion-col size="2">
@@ -54,6 +54,10 @@
         },
         methods: {
             ...mapActions(['fetchLatitude','fetchLongitude','fetchIsGpsOk']),
+            clearLocalisation(){
+                this.activeColor='#000000'
+                this.localisation=""
+            },
             position() {
                 navigator.geolocation.getCurrentPosition(pos => {
                     this.localisation = 'Current Location'
@@ -63,6 +67,7 @@
                     this.fetchIsGpsOk(true)
                 }, err => {
                     console.log(err)
+                    this.activeColor = '#FF9494'
                     this.localisation = 'Erreur'
                 })
 

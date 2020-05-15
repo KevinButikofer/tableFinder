@@ -1,26 +1,31 @@
 <template>
     <ion-list>
-    
-        <ion-item
-                v-for="(item, index) in filteredRestaurant"
-                :key="index"
-                :value="item" @click="showRestaurant(item)">
-            <ion-thumbnail slot="start">
-                <img :src="item.image">
-            </ion-thumbnail>
-            <ion-badge v-if="item.place > 0" color="success" slot="end">{{item.place}}</ion-badge>
-            <ion-badge v-else color="danger" slot="end">{{item.place}}</ion-badge>
-            <ion-label>
-                <h2>{{item.name}}</h2>
-                <h3>{{item.address}}, {{item.city}}</h3>
-                <p>
-                    <ion-icon v-for="(n,index) in item.rating" :key="index" name="star">{{n}}</ion-icon>
-                    <ion-icon v-for="(x,index1) in (MAXNOTE-item.rating)" :key="index1+MAXNOTE" name="star-outline">{{x}}
-                    </ion-icon>
+        <ion-item-sliding v-for="(item, index) in filteredRestaurant"
+                          :key="index"
+                          :value="item">
+            <ion-item-options side="end">
+                <ion-item-option  color="success">Book</ion-item-option>
+            </ion-item-options>
 
-                </p>
-            </ion-label>
-        </ion-item>
+            <ion-item @click="showRestaurant(item)">
+                <ion-thumbnail slot="start">
+                    <img :src="item.image">
+                </ion-thumbnail>
+                <ion-badge v-if="item.place > 0" color="success" slot="end">{{item.place}}</ion-badge>
+                <ion-badge v-else color="danger" slot="end">{{item.place}}</ion-badge>
+                <ion-label>
+                    <h2>{{item.name}}</h2>
+                    <h3>{{item.address}}, {{item.city}}</h3>
+                    <p>
+                        <ion-icon v-for="(n,index) in item.rating" :key="index" name="star">{{n}}</ion-icon>
+                        <ion-icon v-for="(x,index1) in (MAXNOTE-item.rating)" :key="index1+MAXNOTE" name="star-outline">
+                            {{x}}
+                        </ion-icon>
+
+                    </p>
+                </ion-label>
+            </ion-item>
+        </ion-item-sliding>
     </ion-list>
 
 </template>
@@ -28,7 +33,7 @@
 <script>
     import {RESTAURANTS} from "../datas/restaurants";
     import {MAXNOTE} from "../datas/notes"
-    
+
 
     export default {
         name: "ResultList",
@@ -62,21 +67,25 @@
                                 console.log(this.$store.getters.foodStyle)
                                 filteredRestaurant.push(rest);
                             }
-                       }
-                   );                   
-                    return filteredRestaurant;
+                        );
+                        return filteredRestaurant;
+                    }
                 }
-            }
         },
         methods:
-        {
-            showRestaurant:function(rest)
             {
+<<<<<<< HEAD
                 this.$store.dispatch("fetchSelectedRestaurant", rest);
                 this.$router.push({name: 'RestaurantInfo'})
                 //console.log(this.$store.getters.selectedRestaurant);
+=======
+                showRestaurant: function (rest) {
+                    this.$store.dispatch("fetchSelectedRestaurant", rest);
+                    this.$router.push({name: 'RestaurantInfo'})
+                    console.log(this.$store.getters.selectedRestaurant);
+                }
+>>>>>>> 3d4a82ca510e5b6d5958e8eed3b74dec8a97eb17
             }
-        }
     }
 </script>
 
