@@ -3,6 +3,7 @@
     <ion-app>
       <ion-vue-router/>
     </ion-app>
+    <ion-menu-controller></ion-menu-controller>
   </div>
 </template>
 
