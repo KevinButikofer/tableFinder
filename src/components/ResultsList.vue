@@ -53,8 +53,13 @@
                             //  && rest.foodStyle == this.$store.state.foodStyle)
                             // console.log(rest.city);
                             // console.log(this.$store.getters.localisation);
-                            if(rest.city == this.$store.getters.localisation) // && ((typeof(this.$store.state.foodStyle) != "undefined" & rest.foodStyle in this.$store.state.foodStyle) || this.$store.state.foodStyle.length < 1))
+                            //console.log(rest.foodStyle)
+                            //console.log(this.$store.state.foodStyle)
+                            
+                            if(rest.city.includes(this.$store.getters.localisation) ) // && ((typeof(this.$store.state.foodStyle) != "undefined" & rest.foodStyle in this.$store.state.foodStyle) || this.$store.state.foodStyle.length < 1))
                             {
+                                console.log(rest.style)
+                                console.log(this.$store.getters.foodStyle)
                                 filteredRestaurant.push(rest);
                             }
                        }
@@ -69,7 +74,7 @@
             {
                 this.$store.dispatch("fetchSelectedRestaurant", rest);
                 this.$router.push({name: 'RestaurantInfo'})
-                console.log(this.$store.getters.selectedRestaurant);
+                //console.log(this.$store.getters.selectedRestaurant);
             }
         }
     }
