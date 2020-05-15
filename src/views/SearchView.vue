@@ -31,9 +31,9 @@
     // import ClientInfo from "../components/ClientInfo";
     import Header from "../components/Header";
     // import BookingInfo from "../components/BookingInfo";
-    import SearchInfo from "../components/SearchInfo";
-    import ResultList from "../components/ResultsList";
-    import RestaurantInfo from "../components/RestaurantInfo"
+    import SearchInfo from "../components/Search/SearchInfo";
+    import ResultList from "../components/SearchResult/ResultsList";
+    import RestaurantInfo from "../components/SearchResult/SearchDetailsCard"
 
 
     export default {

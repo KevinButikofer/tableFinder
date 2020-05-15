@@ -27,7 +27,7 @@
 </template>
 
 <script>
-    import RestaurantView from "./RestaurantView";
+    import RestaurantView from "./SearchView";
 
     export default {
         name: "Tabs",

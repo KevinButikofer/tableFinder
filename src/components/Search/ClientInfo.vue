@@ -40,7 +40,7 @@
 </template>
 
 <script>
-    import {FOODSTYLE} from "../datas/foodStyle";
+    import {FOODSTYLE} from "../../datas/foodStyle";
     import {mapGetters, mapActions} from 'vuex'
 
     export default {

@@ -13,9 +13,9 @@
 </template>
 
 <script>
-    import ResultsList from "../components/ResultsList";
+    import ResultsList from "../components/SearchResult/ResultsList";
     import Header from "../components/Header";
-    import RestaurantInfo from "../components/RestaurantInfo";
+    import RestaurantInfo from "../components/SearchResult/SearchDetailsCard";
 
     export default {
         name: "About",

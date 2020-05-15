@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import users from './modules/users'
-import restaurants from "./modules/restaurants";
 import infoClient from "./modules/infoClient";
 import selectedRest from "./modules/selectedRest";
 Vue.use(Vuex)
@@ -12,7 +11,6 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     modules: {
         users,
-        restaurants,
         infoClient,
         selectedRest
       },

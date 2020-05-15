@@ -31,8 +31,8 @@
 </template>
 
 <script>
-    import {RESTAURANTS} from "../datas/restaurants";
-    import {MAXNOTE} from "../datas/notes"
+    import {RESTAURANTS} from "../../datas/restaurants";
+    import {MAXNOTE} from "../../datas/notes"
 
 
     export default {
@@ -43,7 +43,7 @@
                 MAXNOTE: MAXNOTE
             }
         },
-        computed: {            
+        computed: {
             filteredRestaurant :
             {
                 get(){
@@ -53,14 +53,14 @@
                     }
                     var filteredRestaurant = [];
                    RESTAURANTS.forEach((rest) => {
-                            // if(rest.place > this.$store.state.peopleNumber 
+                            // if(rest.place > this.$store.state.peopleNumber
                             // && rest.location == this.$store.state.location
                             //  && rest.foodStyle == this.$store.state.foodStyle)
                             // console.log(rest.city);
                             // console.log(this.$store.getters.localisation);
                             //console.log(rest.foodStyle)
                             //console.log(this.$store.state.foodStyle)
-                            
+
                             if(rest.city.includes(this.$store.getters.localisation) ) // && ((typeof(this.$store.state.foodStyle) != "undefined" & rest.foodStyle in this.$store.state.foodStyle) || this.$store.state.foodStyle.length < 1))
                             {
                                 console.log(rest.style)
@@ -71,7 +71,7 @@
                         );
                         return filteredRestaurant;
                     }
-                
+
             }
         },
         methods:
@@ -83,7 +83,7 @@
                 }
             }
     }
-    
+
 </script>
 
 <style scoped>

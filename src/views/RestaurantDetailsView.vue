@@ -11,16 +11,16 @@
 </template>
 
 <script>
-    import ImageHeader from "../components/ImageHeader"
-    import BookingInfoCard from "../components/BookingInfoCard";
-    import OccupationCard from "../components/OccupationCard";
-    import LocationCard from "../components/LocationCard";
+    import ImageHeader from "../components/RestaurantDetails/ImageHeader"
+    import BookingInfoCard from "../components/RestaurantDetails/BookingInfoCard";
+    import OccupationCard from "../components/RestaurantDetails/OccupationCard";
+    import LocationCard from "../components/RestaurantDetails/LocationCard";
 
     export default {
         name: "RestaurantInfos",
-        
+
         computed: {
-             restaurant :{ 
+             restaurant :{
                 get()  {
                     return this.$store.getters.selectedRestaurant
                 }
@@ -35,8 +35,8 @@
                     event.target.complete();
                 }, 2000);
 
-            },       
-           
+            },
+
         },
         components: {
             ImageHeader,

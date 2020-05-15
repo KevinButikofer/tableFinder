@@ -4,11 +4,11 @@
         <ClientInfo/>
         </ion-col>
     </ion-row>
-    <ion-row>    
+    <ion-row>
         <BookingInfo/>
-    </ion-row>    
-    <ion-row>      
-        <ion-col> 
+    </ion-row>
+    <ion-row>
+        <ion-col>
             <ion-button expand="full" @click="showResult()">Search</ion-button>
         </ion-col>
     </ion-row>
@@ -17,15 +17,15 @@
 </template>
 
 <script>
-    import ClientInfo from "../components/ClientInfo";
-    import BookingInfo from "../components/BookingInfo";
+    import ClientInfo from "./ClientInfo";
+    import BookingInfo from "./BookingInfo";
 
     export default {
-        name: "SearchInfo",        
+        name: "SearchInfo",
         methods: {
         log: function () {
             console.log("Restaurant");
-            console.log(this.filteredRestaurant);      
+            console.log(this.filteredRestaurant);
         },
         showResult: function () {
             this.$store.dispatch('fetchShowResult', true);
