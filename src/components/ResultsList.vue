@@ -67,26 +67,23 @@
                                 console.log(this.$store.getters.foodStyle)
                                 filteredRestaurant.push(rest);
                             }
+                   }
                         );
                         return filteredRestaurant;
                     }
-                }
+                
+            }
         },
         methods:
             {
-<<<<<<< HEAD
-                this.$store.dispatch("fetchSelectedRestaurant", rest);
-                this.$router.push({name: 'RestaurantInfo'})
-                //console.log(this.$store.getters.selectedRestaurant);
-=======
                 showRestaurant: function (rest) {
                     this.$store.dispatch("fetchSelectedRestaurant", rest);
                     this.$router.push({name: 'RestaurantInfo'})
                     console.log(this.$store.getters.selectedRestaurant);
                 }
->>>>>>> 3d4a82ca510e5b6d5958e8eed3b74dec8a97eb17
             }
     }
+    
 </script>
 
 <style scoped>
