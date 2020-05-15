@@ -47,24 +47,24 @@
             filteredRestaurant :
             {
                 get(){
-                    if(this.$store.getters.localisation == "")
+                    /*if(this.$store.getters.localisation == "")
                     {
                         return RESTAURANTS
-                    }
+                    }*/
                     var filteredRestaurant = [];
                    RESTAURANTS.forEach((rest) => {
-                            // if(rest.place > this.$store.state.peopleNumber
+                            // if(rest.place > this.$store.state.peopleNumber 
                             // && rest.location == this.$store.state.location
                             //  && rest.foodStyle == this.$store.state.foodStyle)
                             // console.log(rest.city);
                             // console.log(this.$store.getters.localisation);
                             //console.log(rest.foodStyle)
                             //console.log(this.$store.state.foodStyle)
-
-                            if(rest.city.includes(this.$store.getters.localisation) ) // && ((typeof(this.$store.state.foodStyle) != "undefined" & rest.foodStyle in this.$store.state.foodStyle) || this.$store.state.foodStyle.length < 1))
+                            
+                            if(rest.city.toLowerCase().includes(this.$store.getters.localisation.toLowerCase()) 
+                            && ((typeof(this.$store.getters.foodStyle) != "undefined" &  this.$store.getters.foodStyle.includes(rest.style)) || this.$store.getters.foodStyle.length < 1)
+                            && rest.place > this.$store.getters.peopleNumber)
                             {
-                                console.log(rest.style)
-                                console.log(this.$store.getters.foodStyle)
                                 filteredRestaurant.push(rest);
                             }
                    }
