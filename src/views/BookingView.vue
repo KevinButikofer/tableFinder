@@ -1,21 +1,19 @@
 <template>
     <ion-app>
-        <Header title="Results"/>
+        <Header title="Booking"/>
         <ion-content>
             <ion-refresher slot="fixed" @ionRefresh="doRefresh($event)">
                 <ion-refresher-content></ion-refresher-content>
             </ion-refresher>
-            <RestaurantInfo/>
-            <ResultsList/>
-
+            <booking-list/>
         </ion-content>
     </ion-app>
 </template>
 
 <script>
-    import ResultsList from "../components/SearchResult/ResultsList";
+
     import Header from "../components/Header";
-    import RestaurantInfo from "../components/SearchResult/SearchDetailsCard";
+    import BookingList from "../components/Booking/BookingList";
 
     export default {
         name: "About",
@@ -31,9 +29,9 @@
             },
         },
         components: {
-            ResultsList,
+            BookingList,
             Header,
-            RestaurantInfo,
+
         }
     }
 </script>
