@@ -17,9 +17,9 @@
                     <h2>{{item.name}}</h2>
                     <h3>{{item.address}}, {{item.city}}</h3>
                     <p>
-                        <ion-icon v-for="(n,index) in item.rating" :key="index" name="star">{{n}}</ion-icon>
+                        <ion-icon v-for="(n,index) in item.rating" :key="index" name="star"></ion-icon>
                         <ion-icon v-for="(x,index1) in (MAXNOTE-item.rating)" :key="index1+MAXNOTE" name="star-outline">
-                            {{x}}
+
                         </ion-icon>
 
                     </p>
@@ -53,15 +53,15 @@
                     }*/
                     var filteredRestaurant = [];
                    RESTAURANTS.forEach((rest) => {
-                            // if(rest.place > this.$store.state.peopleNumber 
+                            // if(rest.place > this.$store.state.peopleNumber
                             // && rest.location == this.$store.state.location
                             //  && rest.foodStyle == this.$store.state.foodStyle)
                             // console.log(rest.city);
                             // console.log(this.$store.getters.localisation);
                             //console.log(rest.foodStyle)
                             //console.log(this.$store.state.foodStyle)
-                            
-                            if(rest.city.toLowerCase().includes(this.$store.getters.localisation.toLowerCase()) 
+
+                            if(rest.city.toLowerCase().includes(this.$store.getters.localisation.toLowerCase())
                             && ((typeof(this.$store.getters.foodStyle) != "undefined" &  this.$store.getters.foodStyle.includes(rest.style)) || this.$store.getters.foodStyle.length < 1)
                             && rest.place > this.$store.getters.peopleNumber)
                             {

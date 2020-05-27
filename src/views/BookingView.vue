@@ -16,7 +16,7 @@
     import BookingList from "../components/Booking/BookingList";
 
     export default {
-        name: "About",
+        name: "BookingView",
         methods:{
             doRefresh(event) {
                 console.log('Begin async operation');
