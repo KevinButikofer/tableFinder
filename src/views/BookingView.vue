@@ -5,7 +5,12 @@
             <ion-refresher slot="fixed" @ionRefresh="doRefresh($event)">
                 <ion-refresher-content></ion-refresher-content>
             </ion-refresher>
-            <booking-list :key="rerender" v-on:reload="test()"/>
+            <booking-list :key="rerender" v-on:reload="reload()"/>
+            <ion-footer>
+                <ion-toolbar>
+                    <ion-button @click="eraseCurrentHistory()" class="ion-margin" expand="block" color="danger">Erase History</ion-button>
+                </ion-toolbar>
+            </ion-footer>
         </ion-content>
     </ion-app>
 </template>
@@ -14,17 +19,21 @@
 
     import Header from "../components/Header";
     import BookingList from "../components/Booking/BookingList";
+    import {mapActions} from "vuex";
 
     export default {
         name: "BookingView",
         data(){
             return{
+                ...mapActions(['eraseHistory']),
                 rerender :0,
             }
         },
         methods:{
-            test(){
-                console.log(12)
+            eraseCurrentHistory(){
+                this.eraseHistory()
+            },
+            reload(){
                 this.rerender +=1
             },
             doRefresh(event) {

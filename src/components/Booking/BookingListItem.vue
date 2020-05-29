@@ -1,6 +1,10 @@
 <template>
     <ion-item-sliding ref="slide">
         <ion-item-options side="end">
+            <ion-item-option v-if="isDisabled" @click="deleteBooking()" color="danger">
+                <ion-icon name="trash"></ion-icon>
+                Delete
+            </ion-item-option>
             <ion-item-option @click="slideButton()" :color="colorButton">{{textButton}}</ion-item-option>
         </ion-item-options>
         <ion-item v-bind:class="{disabled : isDisabled}">
@@ -29,22 +33,25 @@
     import {mapActions, mapGetters} from "vuex";
 
     export default {
-        props: ['item'],
+        props: ['item', 'isDisabled'],
         name: "BookingListItem",
         data() {
             return {
-                colorButton:"danger",
-                textButton : "Cancel",
+                colorButton: "danger",
+                textButton: "Cancel",
                 MAXNOTE: MAXNOTE,
-                isDisabled: false,
                 infoRestaurant: {},
-                date : "",
+                date: "",
             }
         },
-        methods:{
+        methods: {
             ...mapActions(['removeBooking']),
-           slideButton(){
-                if(!this.isDisabled){
+            deleteBooking() {
+                this.removeBooking(this.item)
+                this.$emit('reload')
+            },
+            slideButton() {
+                if (!this.isDisabled) {
                     return this.$ionic.alertController
                         .create({
                             header: `${this.infoRestaurant.name} booking`,
@@ -56,7 +63,7 @@
                                     this.removeBooking(this.item)
                                     this.$emit('reload')
                                 }
-                            },{
+                            }, {
                                 text: 'No',
                                 role: 'cancel',
                                 handler: () => {
@@ -70,17 +77,16 @@
         },
         mounted() {
             let date = new Date(this.item.date)
-            if( date < new Date()){
-                this.isDisabled = true
+            if (this.isDisabled) {
                 this.textButton = "Rebook"
-                this.colorButton="success"
+                this.colorButton = "success"
             }
             RESTAURANTS.forEach(value => {
                 if (value.id == this.item.id) {
                     this.infoRestaurant = value
                 }
             })
-            this.date = date.toUTCString().slice(0,-3)
+            this.date = date.toUTCString().slice(0, -3)
         },
         computed: {
             ...mapGetters(['listBooking']),

@@ -9,16 +9,18 @@
             </ion-label>
         </ion-item-divider>
         <div v-for="(item, index) in listBooking"
-             :key="index"
-             v-bind:item="item">
-            <ion-item-divider v-if="index == indexHistory ">
-                <ion-label>
-                    History
-                </ion-label>
-            </ion-item-divider>
-            <BookingListItem v-bind:item="item" v-on:reload="$emit('reload')"/>
+             :key="index">
+            <BookingListItem v-bind:item="item" v-bind:is-disabled="false" v-on:reload="$emit('reload')"/>
         </div>
-
+        <ion-item-divider>
+            <ion-label>
+                History
+            </ion-label>
+        </ion-item-divider>
+        <div v-for="(item, index) in listHistory"
+             :key="index + indexBooking">
+            <BookingListItem v-bind:item="item" v-bind:is-disabled="true" v-on:reload="$emit('reload')"/>
+        </div>
     </ion-list>
 </template>
 
@@ -31,39 +33,30 @@
         data() {
             return {
                 ...mapActions(['loadBooking']),
-                indexHistory: 0,
             }
         },
         computed: {
-            ...mapGetters(['listBooking']),
+            ...mapGetters(['listBooking','listHistory']),
+            indexBooking:function(){
+                return this.listBooking.length
+            }
         },
         mounted() {
             localStorage.listBooking = JSON.stringify([{id: 1, date: new Date()}, {id: 2, date: new Date()}, {
                 id: 3,
                 date: new Date()
-            }, {id: 4, date: new Date()}, {id: 5, date: new Date()}, {id: 6, date: new Date()}, {
+            }, {id: 4, date: new Date('2020-05-29T19:53:00')}, {id: 5, date: new Date()}, {id: 6, date: new Date()}, {
                 id: 1,
-                date: new Date('2021-08-25T00:00:00')
-            }, {id: 2, date: new Date('2021-08-25T00:00:00')}, {
+                date: new Date('2021-07-25T00:00:00')
+            }, {id: 2, date: new Date('2021-06-25T00:00:00')}, {
                 id: 3,
                 date: new Date('2021-08-25T00:00:00')
             }, {id: 4, date: new Date('2021-08-25T00:00:00')}, {id: 5, date: new Date('2021-08-25T00:00:00')}, {
                 id: 6,
-                date: new Date('2021-08-25T00:00:00')
+                date: new Date('2021-08-26T00:00:00')
             }])
 
             this.loadBooking()
-
-            let cpt = 0
-            let first = true
-            let date = new Date()
-            this.listBooking.forEach(value => {
-                if (new Date(value.date) < date && first) {
-                    this.indexHistory = cpt
-                    first = false
-                }
-                cpt++
-            })
 
 
         },
