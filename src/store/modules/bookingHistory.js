@@ -27,7 +27,6 @@ const actions = {
     async loadBooking({commit}) {
         let listBooking = (localStorage.listBooking) ? JSON.parse(localStorage.listBooking) : []
         let lists = toLists(listBooking)
-        console.log(12)
         commit('setListBooking', lists[0])
         commit('setListHistory', lists[1])
     },

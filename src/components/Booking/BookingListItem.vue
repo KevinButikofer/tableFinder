@@ -12,6 +12,11 @@
             <ion-thumbnail slot="start">
                 <img :src="infoRestaurant.image">
             </ion-thumbnail>
+
+            <ion-badge v-if="infoRestaurant.place > 0 && isDisabled" color="success" slot="end">{{infoRestaurant.place}}
+            </ion-badge>
+            <ion-badge v-else-if="isDisabled" color="danger" slot="end">{{infoRestaurant.place}}</ion-badge>
+
             <ion-label>
                 <h2>{{infoRestaurant.name}}</h2>
                 <h3>{{infoRestaurant.address}}, {{infoRestaurant.city}}</h3>
