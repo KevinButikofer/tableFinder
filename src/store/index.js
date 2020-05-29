@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import users from './modules/users'
 import infoClient from "./modules/infoClient";
 import selectedRest from "./modules/selectedRest";
+import bookingHistory from "./modules/bookingHistory";
 Vue.use(Vuex)
 
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
     modules: {
         users,
         infoClient,
-        selectedRest
+        selectedRest,
+        bookingHistory
       },
 })

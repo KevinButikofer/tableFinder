@@ -5,7 +5,7 @@
             <ion-refresher slot="fixed" @ionRefresh="doRefresh($event)">
                 <ion-refresher-content></ion-refresher-content>
             </ion-refresher>
-            <booking-list/>
+            <booking-list :key="rerender" v-on:reload="test()"/>
         </ion-content>
     </ion-app>
 </template>
@@ -17,13 +17,21 @@
 
     export default {
         name: "BookingView",
+        data(){
+            return{
+                rerender :0,
+            }
+        },
         methods:{
+            test(){
+                console.log(12)
+                this.rerender +=1
+            },
             doRefresh(event) {
-                console.log('Begin async operation');
 
                 setTimeout(() => {
-                    console.log('Async operation has ended');
-                    event.target.complete();
+                   this.rerender +=1
+                    event.target.complete()
                 }, 2000);
 
             },

@@ -16,7 +16,7 @@
                     History
                 </ion-label>
             </ion-item-divider>
-            <BookingListItem v-bind:item="item"/>
+            <BookingListItem v-bind:item="item" v-on:reload="$emit('reload')"/>
         </div>
 
     </ion-list>
@@ -24,33 +24,47 @@
 
 <script>
     import BookingListItem from "./BookingListItem";
+    import {mapActions, mapGetters} from "vuex";
 
     export default {
         name: "BookingList",
         data() {
             return {
-                indexHistory:0,
-                listBooking: []
+                ...mapActions(['loadBooking']),
+                indexHistory: 0,
             }
         },
+        computed: {
+            ...mapGetters(['listBooking']),
+        },
         mounted() {
-            if (localStorage.listBooking) {
-                let tempList = JSON.parse(localStorage.listBooking)
-                this.listBooking = tempList.sort((a, b) => (a.date > b.date) ? -1 : 1)
+            localStorage.listBooking = JSON.stringify([{id: 1, date: new Date()}, {id: 2, date: new Date()}, {
+                id: 3,
+                date: new Date()
+            }, {id: 4, date: new Date()}, {id: 5, date: new Date()}, {id: 6, date: new Date()}, {
+                id: 1,
+                date: new Date('2021-08-25T00:00:00')
+            }, {id: 2, date: new Date('2021-08-25T00:00:00')}, {
+                id: 3,
+                date: new Date('2021-08-25T00:00:00')
+            }, {id: 4, date: new Date('2021-08-25T00:00:00')}, {id: 5, date: new Date('2021-08-25T00:00:00')}, {
+                id: 6,
+                date: new Date('2021-08-25T00:00:00')
+            }])
 
-                let cpt = 0
-                let first = true
-                let date = new Date()
-                this.listBooking.forEach( value => {
-                    console.log(value.date)
-                    if(new Date(value.date) < date && first){
-                        this.indexHistory = cpt
-                        first = false
-                        console.log(cpt)
-                    }
-                    cpt++
-                })
-            }
+            this.loadBooking()
+
+            let cpt = 0
+            let first = true
+            let date = new Date()
+            this.listBooking.forEach(value => {
+                if (new Date(value.date) < date && first) {
+                    this.indexHistory = cpt
+                    first = false
+                }
+                cpt++
+            })
+
 
         },
         components: {

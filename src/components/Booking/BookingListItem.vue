@@ -1,7 +1,7 @@
 <template>
-    <ion-item-sliding>
+    <ion-item-sliding ref="slide">
         <ion-item-options side="end">
-            <ion-item-option :color="colorButton">{{textButton}}</ion-item-option>
+            <ion-item-option @click="slideButton()" :color="colorButton">{{textButton}}</ion-item-option>
         </ion-item-options>
         <ion-item v-bind:class="{disabled : isDisabled}">
 
@@ -26,6 +26,7 @@
 <script>
     import {RESTAURANTS} from "../../datas/restaurants";
     import {MAXNOTE} from "../../datas/notes"
+    import {mapActions, mapGetters} from "vuex";
 
     export default {
         props: ['item'],
@@ -38,6 +39,33 @@
                 isDisabled: false,
                 infoRestaurant: {},
                 date : "",
+            }
+        },
+        methods:{
+            ...mapActions(['removeBooking']),
+           slideButton(){
+                if(!this.isDisabled){
+                    return this.$ionic.alertController
+                        .create({
+                            header: `${this.infoRestaurant.name} booking`,
+                            subHeader: `${this.date}`,
+                            message: `Do you really want to cancel your booking `,
+                            buttons: [{
+                                text: 'Yes',
+                                handler: () => {
+                                    this.removeBooking(this.item)
+                                    this.$emit('reload')
+                                }
+                            },{
+                                text: 'No',
+                                role: 'cancel',
+                                handler: () => {
+                                    this.$refs.slide.close()
+                                }
+                            }],
+                        })
+                        .then(a => a.present())
+                }
             }
         },
         mounted() {
@@ -53,6 +81,9 @@
                 }
             })
             this.date = date.toUTCString().slice(0,-3)
+        },
+        computed: {
+            ...mapGetters(['listBooking']),
         },
     }
 </script>
