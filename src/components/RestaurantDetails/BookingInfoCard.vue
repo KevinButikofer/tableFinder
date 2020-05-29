@@ -4,7 +4,7 @@
         <ion-card-title>Booking informations</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        For <span>{{peopleNumber}}</span> pepole <br/>
+        For <span>{{peopleNumber}}</span> people <br/>
         The <span>{{getFormattedDate(date)}}</span> <br/>
         From <span>{{getFormattedHour(startHour)}}</span> to <span>{{getFormattedHour(toHour)}}</span>
       </ion-card-content>
@@ -53,7 +53,7 @@
             return hour + ':' + minute;
         },
       }
-       
+
   }
 </script>
 

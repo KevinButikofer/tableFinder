@@ -41,7 +41,7 @@
 </template>
 
 <script>
-    
+
     export default {
         name: "BookingInfo",
         data() {
@@ -84,7 +84,7 @@
                     return this.$store.getters.peopleNumber
                 },
                 set(value) {
-                    this.$store.dispatch('fetchPeopleNumber', new Date(value))
+                    this.$store.dispatch('fetchPeopleNumber', value)
                 },
             },
             maxDate: {

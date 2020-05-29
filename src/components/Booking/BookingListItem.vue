@@ -1,11 +1,11 @@
 <template>
     <ion-item-sliding ref="slide">
-        <ion-item-options >
-            <ion-item-option  v-if="isDisabled" @click="deleteBooking()" color="danger">
+        <ion-item-options>
+            <ion-item-option v-if="isDisabled" @click="deleteBooking()" color="danger">
                 <ion-icon name="trash"></ion-icon>
                 Delete
             </ion-item-option>
-            <ion-item-option  @click="slideButton()" :color="colorButton">{{textButton}}</ion-item-option>
+            <ion-item-option @click="slideButton()" :color="colorButton">{{textButton}}</ion-item-option>
         </ion-item-options>
         <ion-item v-bind:class="{disabled : isDisabled}">
 
@@ -47,6 +47,11 @@
         },
         methods: {
             ...mapActions(['removeBooking']),
+            showRestaurant(){
+                this.$store.dispatch("fetchSelectedRestaurant", this.infoRestaurant);
+                this.$router.push({name: 'RestaurantInfo'})
+                console.log(this.$store.getters.selectedRestaurant);
+            },
             deleteBooking() {
                 this.removeBooking(this.item)
                 this.$emit('reload')
@@ -73,48 +78,40 @@
                             }],
                         })
                         .then(a => a.present())
-                }else{
+                } else {
                     return this.$ionic.alertController
                         .create({
-                            cssClass: 'my-custom-class',
-                            header: 'Prompt!',
+                            header: 'Booking info',
                             inputs: [
-                                {
-                                    placeholder: 'Placeholder 1',
-                                },
-                                {
-                                    name: 'name2',
-                                    id: 'name2-id',
-                                    value: 'hello',
-                                    placeholder: 'Placeholder 2',
-                                },
-                                {
-                                    name: 'name3',
-                                    value: 'http://ionicframework.com',
-                                    type: 'url',
-                                    placeholder: 'Favorite site ever',
-                                },
                                 // input date with min & max
                                 {
-                                    name: 'name4',
-                                    type: 'time',
-                                    min: '2017-03-01',
-                                    max: '2018-01-12',
+                                    name: 'date',
+                                    label: 'Date',
+                                    type: 'Date',
+                                    min: new Date().toISOString(),
+                                    value: this.dateForm.toISOString()
                                 },
                                 // input date without min nor max
                                 {
-                                    name: 'name5',
-                                    type: 'date',
+                                    name: 'start',
+                                    label: 'Start',
+                                    type: 'time',
+                                    min: new Date().toTimeString(),
+                                    value: this.startHour.toTimeString()
                                 },
                                 {
-                                    name: 'name6',
-                                    type: 'number',
-                                    min: -5,
-                                    max: 10,
+                                    name: 'end',
+                                    label: 'End',
+                                    type: 'time',
+                                    min: new Date().toTimeString(),
+                                    value: this.toHour.toTimeString()
                                 },
                                 {
-                                    name: 'name7',
+                                    name: 'people',
+                                    label: 'People',
                                     type: 'number',
+                                    min: 1,
+                                    value: this.peopleNumber
                                 },
                             ],
                             buttons: [
@@ -123,13 +120,17 @@
                                     role: 'cancel',
                                     cssClass: 'secondary',
                                     handler: () => {
-                                        console.log('Confirm Cancel')
+                                        this.$refs.slide.close()
                                     },
                                 },
                                 {
                                     text: 'Ok',
-                                    handler: () => {
-                                        console.log('Confirm Ok')
+                                    handler: (info) => {
+                                        this.dateForm = info.date
+                                        this.startHour = `${new Date(info.date).toDateString()} ${info.start}`
+                                        this.toHour = `${new Date(info.date).toDateString()} ${info.end}`
+                                        this.peopleNumber = info.people
+                                        this.showRestaurant()
                                     },
                                 },
                             ],
@@ -153,6 +154,47 @@
         },
         computed: {
             ...mapGetters(['listBooking']),
+            dateForm: {
+                get() {
+                    return this.$store.getters.date
+                },
+                set(value) {
+                    this.$store.dispatch('fetchDate', new Date(value))
+                }
+            },
+            startHour: {
+                get() {
+                    return this.$store.getters.startHour
+                },
+                set(value) {
+                    this.$store.dispatch('fetchStartHour', new Date(value));
+                }
+            },
+            toHour: {
+                get() {
+                    return this.$store.getters.toHour
+                },
+                set(value) {
+                    //alert(value);
+                    //alert(new Date());
+                    this.$store.dispatch('fetchToHour', new Date(value));
+                }
+            },
+            peopleNumber: {
+                get() {
+                    return this.$store.getters.peopleNumber
+                },
+                set(value) {
+                    this.$store.dispatch('fetchPeopleNumber', value)
+                },
+            },
+            maxDate: {
+                get() {
+                    var max = new Date();
+                    max.setMonth(max.getMonth() + 1);
+                    return max.toISOString();
+                }
+            },
         },
     }
 </script>
