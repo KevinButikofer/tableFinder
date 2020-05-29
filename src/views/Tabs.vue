@@ -6,7 +6,7 @@
             </ion-tab>
 
             <ion-tab tab="booking">
-                <ion-vue-router name="booking"></ion-vue-router>
+                <BookingView/>
             </ion-tab>
             <ion-tab tab="restaurant">
                 <RestaurantView/>
@@ -29,9 +29,12 @@
 <script>
     import RestaurantView from "./SearchView";
 
+    import BookingView from "./BookingView";
+
     export default {
         name: "Tabs",
         components: {
+            BookingView,
             RestaurantView
         }
     }
