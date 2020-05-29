@@ -2,11 +2,16 @@
     <ion-app>
         <ImageHeader/>
         <ion-content >
-        <h2>{{ restaurant.name }}</h2>
+        <h1>{{ restaurant.name }}</h1>
             <BookingInfoCard/>
             <OccupationCard/>
             <LocationCard/>
         </ion-content>
+        <ion-footer translucent="true">
+            <ion-toolbar>
+                <ion-button class="ion-margin" expand="block" color="success">Book</ion-button>
+            </ion-toolbar>
+        </ion-footer>
     </ion-app>
 </template>
 
