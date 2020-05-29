@@ -41,7 +41,7 @@
 </template>
 
 <script>
-
+    
     export default {
         name: "BookingInfo",
         data() {
@@ -58,7 +58,7 @@
                     return this.$store.getters.date
                 },
                 set(value) {
-                    this.$store.dispatch('fetchDate', value)
+                    this.$store.dispatch('fetchDate', new Date(value))
                 }
             },
             startHour: {
@@ -66,7 +66,7 @@
                     return this.$store.getters.startHour
                 },
                 set(value) {
-                    this.$store.dispatch('fetchStartHour', value)
+                    this.$store.dispatch('fetchStartHour', new Date(value));
                 }
             },
             toHour: {
@@ -74,8 +74,9 @@
                     return this.$store.getters.toHour
                 },
                 set(value) {
-                    this.$store.dispatch('fetchToHour', value)
-                    this.$emit('input', value);
+                    //alert(value);
+                    //alert(new Date());
+                    this.$store.dispatch('fetchToHour', new Date(value));
                 }
             },
             peopleNumber:{
@@ -83,7 +84,7 @@
                     return this.$store.getters.peopleNumber
                 },
                 set(value) {
-                    this.$store.dispatch('fetchPeopleNumber', value)
+                    this.$store.dispatch('fetchPeopleNumber', new Date(value))
                 },
             },
             maxDate: {
@@ -110,10 +111,15 @@
                 var tH = new Date(this.toHour);
                 if (tH.getHours() < sH.getHours() + 1) {
                     tH.setHours(sH.getHours() + 1);
-                    this.toHour = tH.toISOString();
+                    this.toHour = tH;
                 }
 
-            }
+            },
+        },
+        mounted() {
+        var today = new Date();
+        today.setHours(today.getHours() + 1)
+        this.toHour = today;
         }
     }
 </script>
