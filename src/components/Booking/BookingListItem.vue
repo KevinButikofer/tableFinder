@@ -1,21 +1,17 @@
 <template>
     <ion-item-sliding ref="slide">
-        <ion-item-options side="end">
-            <ion-item-option v-if="isDisabled" @click="deleteBooking()" color="danger">
+        <ion-item-options >
+            <ion-item-option  v-if="isDisabled" @click="deleteBooking()" color="danger">
                 <ion-icon name="trash"></ion-icon>
                 Delete
             </ion-item-option>
-            <ion-item-option @click="slideButton()" :color="colorButton">{{textButton}}</ion-item-option>
+            <ion-item-option  @click="slideButton()" :color="colorButton">{{textButton}}</ion-item-option>
         </ion-item-options>
         <ion-item v-bind:class="{disabled : isDisabled}">
 
             <ion-thumbnail slot="start">
                 <img :src="infoRestaurant.image">
             </ion-thumbnail>
-
-            <ion-badge v-if="infoRestaurant.place > 0 && isDisabled" color="success" slot="end">{{infoRestaurant.place}}
-            </ion-badge>
-            <ion-badge v-else-if="isDisabled" color="danger" slot="end">{{infoRestaurant.place}}</ion-badge>
 
             <ion-label>
                 <h2>{{infoRestaurant.name}}</h2>
@@ -75,6 +71,68 @@
                                     this.$refs.slide.close()
                                 }
                             }],
+                        })
+                        .then(a => a.present())
+                }else{
+                    return this.$ionic.alertController
+                        .create({
+                            cssClass: 'my-custom-class',
+                            header: 'Prompt!',
+                            inputs: [
+                                {
+                                    placeholder: 'Placeholder 1',
+                                },
+                                {
+                                    name: 'name2',
+                                    id: 'name2-id',
+                                    value: 'hello',
+                                    placeholder: 'Placeholder 2',
+                                },
+                                {
+                                    name: 'name3',
+                                    value: 'http://ionicframework.com',
+                                    type: 'url',
+                                    placeholder: 'Favorite site ever',
+                                },
+                                // input date with min & max
+                                {
+                                    name: 'name4',
+                                    type: 'time',
+                                    min: '2017-03-01',
+                                    max: '2018-01-12',
+                                },
+                                // input date without min nor max
+                                {
+                                    name: 'name5',
+                                    type: 'date',
+                                },
+                                {
+                                    name: 'name6',
+                                    type: 'number',
+                                    min: -5,
+                                    max: 10,
+                                },
+                                {
+                                    name: 'name7',
+                                    type: 'number',
+                                },
+                            ],
+                            buttons: [
+                                {
+                                    text: 'Cancel',
+                                    role: 'cancel',
+                                    cssClass: 'secondary',
+                                    handler: () => {
+                                        console.log('Confirm Cancel')
+                                    },
+                                },
+                                {
+                                    text: 'Ok',
+                                    handler: () => {
+                                        console.log('Confirm Ok')
+                                    },
+                                },
+                            ],
                         })
                         .then(a => a.present())
                 }
