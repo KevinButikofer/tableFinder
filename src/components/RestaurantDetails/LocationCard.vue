@@ -6,7 +6,7 @@
       <ion-card-content>
           <GoogleMapLoader
           :mapConfig="{
-  center: {lat: 46.990438, lng: 6.929677},
+  center: { lat: 46.990438, lng: 6.929677},
   zoom: 16,
  disableDefaultUI: true,
   gestureHandling: 'none',
@@ -23,14 +23,6 @@ import GoogleMapLoader from '../GoogleMapLoader'
       name: "BookingInfoCard", 
   components: {
     GoogleMapLoader
-  },
-
-  computed: {
-    mapConfig () {
-      return {
-        center: { lat: 0, lng: 0 }
-      }
-    },
   },
       
   }

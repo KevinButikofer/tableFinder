@@ -20,6 +20,13 @@ export default {
     map: null
   }
 },
+computed: {
+             restaurant :{
+                get()  {
+                    return this.$store.getters.selectedRestaurant
+                }
+            },
+        },
   async mounted() {
     const googleMapApi = await GoogleMapsApiLoader({
       apiKey: this.apiKey
@@ -32,6 +39,15 @@ export default {
     initializeMap() {
       const mapContainer = this.$refs.googleMap
       this.map = new this.google.maps.Map(mapContainer, this.mapConfig)
+
+    var myLatLng = {lat: this.restaurant.lat, lng: this.restaurant.lng};
+    var marker = new this.google.maps.Marker({
+    position: myLatLng,
+    map: this.map,
+    title: this.restaurant.name
+    });    
+    this.map.panTo(myLatLng);
+    marker.setMap(this.map);
     }
   }
 }
