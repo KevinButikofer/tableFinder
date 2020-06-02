@@ -40,7 +40,22 @@
         },
         methods: {
             eraseCurrentHistory() {
-                this.eraseHistory()
+                return this.$ionic.alertController
+                    .create({
+                        header: this.$t('modalHistory.header'),
+                        message: this.$t('modalHistory.message'),
+                        buttons: [{
+                            text: this.$t('modalHistory.yes'),
+                            handler: () => {
+                                this.eraseHistory()
+                            }
+                        }, {
+                            text: this.$t('modalHistory.no'),
+                            role: 'cancel',
+                        }],
+                    })
+                    .then(a => a.present())
+
             },
             reload() {
                 this.rerender += 1

@@ -1,11 +1,11 @@
 <template>
     <ion-item-sliding ref="slide" @click="showRestaurant()" >
         <ion-item-options>
-            <ion-item-option button v-if="isDisabled" @click="deleteBooking()" color="danger">
+            <ion-item-option button v-if="isDisabled" v-on:click.stop="deleteBooking" color="danger">
                 <ion-icon name="trash"></ion-icon>
                 {{$t('bookingView.delete')}}
             </ion-item-option>
-            <ion-item-option button @click="slideButton()" :color="colorButton">{{textButton}}</ion-item-option>
+            <ion-item-option button v-on:click.stop="slideButton" :color="colorButton">{{textButton}}</ion-item-option>
         </ion-item-options>
         <ion-item v-bind:class="{disabled : isDisabled}">
 
@@ -81,7 +81,7 @@
                 } else {
                     return this.$ionic.alertController
                         .create({
-                            header: 'Booking info',
+                            header: this.$t('bookingView.listHeader'),
                             inputs: [
                                 // input date with min & max
                                 {
@@ -146,7 +146,7 @@
                 this.colorButton = "success"
             }
             RESTAURANTS.forEach(value => {
-                if (value.id == this.item.id) {
+                if (value.id == this.item.idRestaurant) {
                     this.infoRestaurant = value
                 }
             })

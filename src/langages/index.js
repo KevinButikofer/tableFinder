@@ -5,6 +5,12 @@ Vue.use(VueI18n)
 
 const messages = {
     en: {
+        modalHistory:{
+            yes:'Yes',
+            no:'No',
+            message:'Do you really want to erase your history?',
+            header:'Erase history'
+        },
         login: {
             login: 'Login',
             logout: 'Logout',
@@ -42,6 +48,12 @@ const messages = {
         }
     },
     fr: {
+        modalHistory:{
+            yes:'Oui',
+            no:'Non',
+            message:'Voulez vous vraiment effacer votre historique?',
+            header:"Effacer l'historique"
+        },
         login: {
             login: 'Connexion',
             logout: 'Deconnexion',

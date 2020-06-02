@@ -5,7 +5,7 @@
             <ion-row justify-content-center>
 
                 <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-                    <div v-show="errorLogin">
+                    <div v-if="errorLogin">
                         <ion-card>
                             <ion-card-header>
                                 <ion-card-title>{{$t('login.error')}}</ion-card-title>
@@ -39,7 +39,7 @@
 
 
                     <div padding>
-                        <ion-button  @click="loginUser" size="large" expand="block">{{$t('login.login')}}</ion-button>
+                        <ion-button @click="loginUser" size="large" expand="block">{{$t('login.login')}}</ion-button>
                     </div>
                 </ion-col>
             </ion-row>
@@ -49,7 +49,8 @@
 
 <script>
     import {USERS} from "../datas/users";
-    import { mapActions} from 'vuex'
+    import {mapActions,mapGetters} from 'vuex'
+
     export default {
         name: "Login",
         data() {
@@ -57,20 +58,26 @@
                 username: '',
                 password: '',
                 errorLogin: false,
+                isOk: false
             }
+        },
+        computed:{
+            ...mapGetters(['idUser']),
         },
         methods: {
             ...mapActions(['loginStore']),
             loginUser() {
                 USERS.forEach(e => {
-                    if(e.username == this.username && e.password == this.password){
-
-                        this.loginStore({id:e.id,username:e.username,name:e.name})
+                    if (e.username == this.username && e.password == this.password) {
+                        this.loginStore({id: e.id, username: e.username, name: e.name})
+                        this.isOk = true
                         this.$router.back()
-                    }else{
-                        this.errorLogin = true
                     }
                 })
+
+                this.errorLogin = !this.isOk
+
+
             },
         },
         components: {}

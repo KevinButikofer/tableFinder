@@ -1,15 +1,18 @@
-function toLists(listBooking) {
+function toLists(listBooking, idUser) {
     let now = new Date()
     let timer = new Date().setHours(now.getHours() + 1)
     let listTemp = []
     let listHistory = []
 
     listBooking.forEach(o => {
-        if (new Date(o.date) < timer) {
-            listHistory.push(o)
-        } else {
-            listTemp.push(o)
+        if (o.idUser == idUser) {
+            if (new Date(o.date) < timer) {
+                listHistory.push(o)
+            } else {
+                listTemp.push(o)
+            }
         }
+
     })
     return [listTemp, listHistory]
 
@@ -24,9 +27,9 @@ const getters = {
     listHistory: (state) => state.listHistory,
 };
 const actions = {
-    async loadBooking({commit}) {
+    async loadBooking({commit}, idUser) {
         let listBooking = (localStorage.listBooking) ? JSON.parse(localStorage.listBooking) : []
-        let lists = toLists(listBooking)
+        let lists = toLists(listBooking, idUser)
         commit('setListBooking', lists[0])
         commit('setListHistory', lists[1])
     },
@@ -40,7 +43,7 @@ const actions = {
     },
     async removeBooking({commit}, booking) {
         let listBooking = (localStorage.listBooking) ? JSON.parse(localStorage.listBooking) : []
-        listBooking = listBooking.filter(b => (b.id != booking.id || b.date != booking.date))
+        listBooking = listBooking.filter(b => (b.idRestaurant != booking.idRestaurant || b.date != booking.date))
         localStorage.listBooking = JSON.stringify(listBooking)
         let lists = toLists(listBooking)
         commit('setListBooking', lists[0])

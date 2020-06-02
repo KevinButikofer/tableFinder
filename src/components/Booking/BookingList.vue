@@ -36,27 +36,40 @@
             }
         },
         computed: {
-            ...mapGetters(['listBooking','listHistory']),
-            indexBooking:function(){
+            ...mapGetters(['listBooking', 'listHistory','idUser']),
+            indexBooking: function () {
                 return this.listBooking.length
             }
         },
         mounted() {
-            localStorage.listBooking = JSON.stringify([{id: 1, date: new Date()}, {id: 2, date: new Date()}, {
-                id: 3,
+            localStorage.listBooking = JSON.stringify([{idUser: 1, idRestaurant: 1, date: new Date()}, {
+                idUser: 1,
+                idRestaurant: 2,
                 date: new Date()
-            }, {id: 4, date: new Date('2020-05-29T19:53:00')}, {id: 5, date: new Date()}, {id: 6, date: new Date()}, {
-                id: 1,
+            }, {
+                idUser: 1,
+                idRestaurant: 3,
+                date: new Date()
+            }, {idUser: 1, idRestaurant: 4, date: new Date('2020-05-29T19:53:00')}, {
+                idUser: 1,
+                idRestaurant: 5,
+                date: new Date()
+            }, {idUser: 1, idRestaurant: 6, date: new Date()}, {
+                idUser:1,idRestaurant: 1,
                 date: new Date('2021-07-25T00:00:00')
-            }, {id: 2, date: new Date('2021-06-25T00:00:00')}, {
-                id: 3,
+            }, {idUser: 1, idRestaurant: 2, date: new Date('2021-06-25T00:00:00')}, {
+                idUser:1,idRestaurant: 3,
                 date: new Date('2021-08-25T00:00:00')
-            }, {id: 4, date: new Date('2021-08-25T00:00:00')}, {id: 5, date: new Date('2021-08-25T00:00:00')}, {
-                id: 6,
+            }, {idUser: 1, idRestaurant: 4, date: new Date('2021-08-25T00:00:00')}, {
+                idUser: 1,
+                idRestaurant: 5,
+                date: new Date('2021-08-25T00:00:00')
+            }, {
+                idUser: 1,
+                idRestaurant: 6,
                 date: new Date('2021-08-26T00:00:00')
             }])
-
-            this.loadBooking()
+            this.loadBooking(this.idUser)
 
 
         },
