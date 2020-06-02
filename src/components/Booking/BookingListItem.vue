@@ -16,7 +16,7 @@
             <ion-label>
                 <h2>{{infoRestaurant.name}}</h2>
                 <h3>{{infoRestaurant.address}}, {{infoRestaurant.city}}</h3>
-                <p>
+                <p v-bind:class="{disabled : isDisabled}">
                     <ion-icon v-for="(n,index) in infoRestaurant.rating" :key="index" name="star"></ion-icon>
                     <ion-icon v-for="(x,index1) in (MAXNOTE-infoRestaurant.rating)" :key="index1+MAXNOTE"
                               name="star-outline">
