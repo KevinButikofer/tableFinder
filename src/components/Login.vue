@@ -26,20 +26,22 @@
                     <div padding>
                         <ion-item>
                             <ion-label position="floating">{{$t('login.username')}}</ion-label>
-                            <ion-input required @ionChange="username=$event.target.value" type="text"
+                            <ion-input required @ionChange="usrChange($event)" type="text"
                                        Position></ion-input>
                         </ion-item>
 
 
                         <ion-item>
                             <ion-label position="floating">{{$t('login.password')}}</ion-label>
-                            <ion-input required @ionChange="password=$event.target.value" type="password"></ion-input>
+                            <ion-input required @ionChange="pwdChange($event)" type="password"></ion-input>
                         </ion-item>
                     </div>
 
 
                     <div padding>
-                        <ion-button @click="loginUser" size="large" expand="block">{{$t('login.login')}}</ion-button>
+                        <ion-button :disabled="nOkLogin" @click="loginUser" size="large" expand="block">
+                            {{$t('login.login')}}
+                        </ion-button>
                     </div>
                 </ion-col>
             </ion-row>
@@ -49,7 +51,7 @@
 
 <script>
     import {USERS} from "../datas/users";
-    import {mapActions,mapGetters} from 'vuex'
+    import {mapActions, mapGetters} from 'vuex'
 
     export default {
         name: "Login",
@@ -58,14 +60,24 @@
                 username: '',
                 password: '',
                 errorLogin: false,
-                isOk: false
+                isOk: false,
+                nOkLogin: true,
+
             }
         },
-        computed:{
+        computed: {
             ...mapGetters(['idUser']),
         },
         methods: {
             ...mapActions(['loginStore']),
+            pwdChange(event) {
+                this.password = event.target.value
+                this.nOkLogin = !(this.password.length != 0 && this.username.length != 0)
+            },
+            usrChange(event) {
+                this.username = event.target.value
+                this.nOkLogin = !(this.password.length != 0 && this.username.length != 0)
+            },
             loginUser() {
                 USERS.forEach(e => {
                     if (e.username == this.username && e.password == this.password) {

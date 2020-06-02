@@ -14,6 +14,7 @@ const actions = {
     loadUser({commit}){
         if(localStorage.user){
             let user = JSON.parse(localStorage.user)
+            console.log(user.id)
             commit('setUserId',user.id)
             commit('setUserName',user.username)
             commit('setName',user.name)

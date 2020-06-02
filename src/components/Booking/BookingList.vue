@@ -32,7 +32,7 @@
         name: "BookingList",
         data() {
             return {
-                ...mapActions(['loadBooking']),
+                ...mapActions(['loadBooking','loadUser']),
             }
         },
         computed: {
@@ -69,6 +69,7 @@
                 idRestaurant: 6,
                 date: new Date('2021-08-26T00:00:00')
             }])
+            this.loadUser()
             this.loadBooking(this.idUser)
 
 

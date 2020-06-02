@@ -34,10 +34,11 @@
         name: "BookingView",
         data() {
             return {
-                ...mapActions(['eraseHistory']),
+                ...mapActions(['eraseHistory',]),
                 rerender: 0,
             }
         },
+
         methods: {
             eraseCurrentHistory() {
                 return this.$ionic.alertController
