@@ -30,6 +30,7 @@ const messages = {
             people: 'People'
         },
         bookingView: {
+            error:'You have to login to show your booking informations',
             title: 'Booking',
             listHeader: 'Booking informations',
             currentBooking: 'Your booked restaurants',
@@ -66,6 +67,7 @@ const messages = {
             people: 'Personne'
         },
         bookingView: {
+            error:'Vous devez vous connecter pour afficher vos informations de réservation',
             title: 'Réservations',
             listHeader: 'Informations de Réservation',
             currentBooking: 'Vos réservations',
