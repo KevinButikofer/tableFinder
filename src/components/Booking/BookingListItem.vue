@@ -49,8 +49,7 @@
             ...mapActions(['removeBooking']),
             showRestaurant(){
                 this.$store.dispatch("fetchSelectedRestaurant", this.infoRestaurant);
-                this.$router.push({name: 'RestaurantInfo', params: {hideBook: false}})
-                console.log(this.$store.getters.selectedRestaurant);
+                this.$router.push({name: 'RestaurantInfo', params: {hideBook: !this.isDisabled}})
             },
             deleteBooking() {
                 this.removeBooking(this.item)

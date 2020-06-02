@@ -7,7 +7,7 @@
             <LocationCard/>
             <!-- <BookingDetailCard/> -->
         </ion-content>
-        <ion-footer v-show="!$route.params.hideBook == 'true'" translucent="true">
+        <ion-footer v-show="!$route.params.hideBook" translucent="true">
             <ion-toolbar>
                 <ion-button class="ion-margin" @click="bookCurrentRest()" expand="block" color="success">Book
                 </ion-button>
@@ -72,6 +72,10 @@
             BookingInfoCard,
             OccupationCard,
             LocationCard,
+        },
+        mounted()
+        {
+            console.log(this.$route.params.hideBook)
         }
     }
 </script>

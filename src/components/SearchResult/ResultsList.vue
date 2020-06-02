@@ -78,8 +78,7 @@
             {
                 showRestaurant: function (rest) {
                     this.$store.dispatch("fetchSelectedRestaurant", rest);
-                    this.$router.push({name: 'RestaurantInfo'})
-                    console.log(this.$store.getters.selectedRestaurant);
+                    this.$router.push({name: 'RestaurantInfo', params: {hideBook: false}})
                 }
             }
     }
