@@ -33,8 +33,12 @@
                     </ion-item>
                     <ion-item>
                         <ion-label>Langage</ion-label>
-                        <ion-select interface="popover">
-                            <ion-select-option>
+                        <ion-select :value="$i18n.locale" interface="popover" @ionChange="$i18n.locale = $event.target.value">
+                            <ion-select-option value="en">
+                                English
+                            </ion-select-option>
+                            <ion-select-option value="fr">
+                                Français
                             </ion-select-option>
                         </ion-select>
                     </ion-item>
