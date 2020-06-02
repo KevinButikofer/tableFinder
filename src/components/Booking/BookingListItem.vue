@@ -3,7 +3,7 @@
         <ion-item-options>
             <ion-item-option v-if="isDisabled" @click="deleteBooking()" color="danger">
                 <ion-icon name="trash"></ion-icon>
-                Delete
+                {{$t('bookingView.delete')}}
             </ion-item-option>
             <ion-item-option @click="slideButton()" :color="colorButton">{{textButton}}</ion-item-option>
         </ion-item-options>
@@ -39,7 +39,7 @@
         data() {
             return {
                 colorButton: "danger",
-                textButton: "Cancel",
+                textButton: this.$t('bookingView.cancel'),
                 MAXNOTE: MAXNOTE,
                 infoRestaurant: {},
                 date: "",
@@ -142,7 +142,7 @@
         mounted() {
             let date = new Date(this.item.date)
             if (this.isDisabled) {
-                this.textButton = "Rebook"
+                this.textButton = this.$t('bookingView.rebook')
                 this.colorButton = "success"
             }
             RESTAURANTS.forEach(value => {

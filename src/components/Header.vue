@@ -31,7 +31,15 @@
                         <ion-icon name="heart" slot="start"></ion-icon>
                         <ion-label>Favorites</ion-label>
                     </ion-item>
+                    <ion-item>
+                        <ion-label>Langage</ion-label>
+                        <ion-select interface="popover">
+                            <ion-select-option>
+                            </ion-select-option>
+                        </ion-select>
+                    </ion-item>
                 </ion-list>
+
             </ion-content>
         </ion-menu>
 

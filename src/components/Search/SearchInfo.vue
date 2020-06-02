@@ -1,18 +1,19 @@
 <template>
-<ion-grid>
-    <ion-row><ion-col>
-        <ClientInfo/>
-        </ion-col>
-    </ion-row>
-    <ion-row>
-        <BookingInfo/>
-    </ion-row>
-    <ion-row>
-        <ion-col>
-            <ion-button expand="full" @click="showResult()">Search</ion-button>
-        </ion-col>
-    </ion-row>
-</ion-grid>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ClientInfo/>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <BookingInfo/>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-button expand="full" @click="showResult()">{{$t('searchView.search')}}</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 
 </template>
 
@@ -23,15 +24,15 @@
     export default {
         name: "SearchInfo",
         methods: {
-        log: function () {
-            console.log("Restaurant");
-            console.log(this.filteredRestaurant);
+            log: function () {
+                console.log("Restaurant");
+                console.log(this.filteredRestaurant);
+            },
+            showResult: function () {
+                this.$store.dispatch('fetchShowResult', true);
+            }
         },
-        showResult: function () {
-            this.$store.dispatch('fetchShowResult', true);
-        }
-        },
-         components: {
+        components: {
             ClientInfo,
             BookingInfo
         }

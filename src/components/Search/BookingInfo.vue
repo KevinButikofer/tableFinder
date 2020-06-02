@@ -1,7 +1,7 @@
 <template>
     <ion-grid>
         <ion-row>
-            <h2>Booking</h2>
+            <h2>{{$t('searchView.booking')}}</h2>
         </ion-row>
         <ion-row>
             <ion-col col-6>
@@ -13,7 +13,7 @@
             </ion-col>
             <ion-col col-6>
                 <ion-item>
-                    <ion-label position="floating">People</ion-label>
+                    <ion-label position="floating">{{$t('searchView.people')}}</ion-label>
                     <ion-input v-bind:value="peopleNumber" @ionChange="peopleNumber=$event.target.value" type="number"></ion-input>
                 </ion-item>
             </ion-col>
@@ -22,7 +22,7 @@
             <ion-col col-6>
                 <ion-item>
 
-                    <ion-label position="floating">Start</ion-label>
+                    <ion-label position="floating">{{$t('searchView.start')}}</ion-label>
                     <ion-datetime v-bind:value="startHour"
                                   @ionChange="startHour = $event.target.value; updateToHour($event);"
                                   display-format="HH:mm"></ion-datetime>
@@ -30,7 +30,7 @@
             </ion-col>
             <ion-col col-6>
                 <ion-item>
-                    <ion-label position="floating">To</ion-label>
+                    <ion-label position="floating">{{$t('searchView.end')}}</ion-label>
                     <ion-datetime v-bind:value="toHour" @ionChange="toHour = $event.target.value"
                                   display-format="HH:mm"></ion-datetime>
                 </ion-item>
@@ -117,7 +117,7 @@
             },
         },
         mounted() {
-        
+
         var today = new Date();
         today.setHours(today.getHours() + 1)
         this.toHour = today;

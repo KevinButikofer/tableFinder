@@ -1,6 +1,6 @@
 <template>
     <ion-app>
-        <Header v-show="!showResult" title="Find a table"/>
+        <Header v-show="!showResult" :title="$t('searchView.findTable')"/>
         <ion-header v-show="showResult">
             <ion-toolbar color="primary">
                 <ion-buttons slot="start">

@@ -8,7 +8,7 @@
         <ion-row>
             <ion-col size="10">
                 <ion-item>
-                    <ion-label position="floating">Location</ion-label>
+                    <ion-label position="floating">{{$t('searchView.location')}}</ion-label>
                     <ion-input v-bind:style="{ color: activeColor}" v-bind:value="localisation"
                                @ionChange="localisation=$event.target.value" @click="clearLocalisation"></ion-input>
                 </ion-item>
@@ -23,8 +23,8 @@
         <ion-row>
             <ion-col>
                 <ion-item>
-                    <ion-label>Food Style</ion-label>
-                    <ion-select multiple="true" id="select" @ionChange="foodStyle=$event.target.value">
+                    <ion-label>{{$t('searchView.foodStyle')}}</ion-label>
+                    <ion-select :ok-text="$t('button.ok')" :cancel-text="$t('button.cancel')" multiple="true" id="select" @ionChange="foodStyle=$event.target.value">
                         <ion-select-option
                                 v-for="(item, index) in FOODSTYLE"
                                 :key="index"
@@ -60,7 +60,7 @@
             },
             position() {
                 navigator.geolocation.getCurrentPosition(pos => {
-                    this.localisation = 'Current Location'
+                    this.localisation = this.$t('searchView.currentLoc')
                     this.activeColor = '#3880ff'
                     this.fetchLatitude(pos.coords.latitude)
                     this.fetchLongitude(pos.coords.longitude)
