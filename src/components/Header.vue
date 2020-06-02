@@ -11,7 +11,7 @@
                 <ion-title>{{title}}</ion-title>
             </ion-toolbar>
         </ion-header>
-        <ion-menu side="end"  contentId="menu">
+        <ion-menu side="end" contentId="menu">
             <ion-header>
                 <ion-toolbar translucent>
                     <ion-title>Menu</ion-title>
@@ -19,29 +19,46 @@
             </ion-header>
             <ion-content>
                 <ion-list>
-                    <ion-item>
-                        <ion-icon name="mail" slot="start"></ion-icon>
-                        <ion-item @click="test">test</ion-item>
+                    <ion-item v-if="!connected" button @click="login">
+
+                        <ion-icon name="log-in" slot="start"></ion-icon>
+
+                        <ion-label>
+                            {{$t('login.login')}}
+                        </ion-label>
+                    </ion-item>
+                    <ion-item v-else>
+                        <ion-avatar slot="start">
+                            <img src="/images/icons/circle.svg">
+                        </ion-avatar>
+                        <ion-label>
+                            <h3>{{username}}</h3>
+                            <p>{{name}}</p>
+                        </ion-label>
                     </ion-item>
                     <ion-item>
-                        <ion-icon name="paper-plane" slot="start"></ion-icon>
-                        <ion-label>Outbox</ion-label>
+                        <ion-icon name="globe" slot="start"></ion-icon>
+                        <ion-label>
+                            <ion-select :value="$i18n.locale" interface="popover"
+                                        @ionChange="changeLang($event)">
+                                <ion-select-option value="en">
+                                    English
+                                </ion-select-option>
+                                <ion-select-option value="fr">
+                                    Français
+                                </ion-select-option>
+                            </ion-select>
+                        </ion-label>
                     </ion-item>
-                    <ion-item>
-                        <ion-icon name="heart" slot="start"></ion-icon>
-                        <ion-label>Favorites</ion-label>
+                    <ion-item v-if="connected" button @click="logout">
+
+                        <ion-icon name="log-out" slot="start"></ion-icon>
+
+                        <ion-label>
+                            {{$t('login.logout')}}
+                        </ion-label>
                     </ion-item>
-                    <ion-item>
-                        <ion-label>Langage</ion-label>
-                        <ion-select :value="$i18n.locale" interface="popover" @ionChange="$i18n.locale = $event.target.value">
-                            <ion-select-option value="en">
-                                English
-                            </ion-select-option>
-                            <ion-select-option value="fr">
-                                Français
-                            </ion-select-option>
-                        </ion-select>
-                    </ion-item>
+
                 </ion-list>
 
             </ion-content>
@@ -52,17 +69,31 @@
 </template>
 
 <script>
+    import {mapGetters ,mapActions} from 'vuex'
+
     export default {
         name: "Header",
         props: ['title'],
-        methods:{
-          test(){
-              this.$router.push({name: 'restaurant'})
-          }
+        methods: {
+            ...mapActions(['logout']),
+            login() {
+                this.$router.push({name: 'login'})
+            },
+            changeLang(event){
+                this.$i18n.locale = event.target.value
+                localStorage.lang = event.target.value
+            }
         },
+        computed: {
+            ...mapGetters(['connected', 'username', 'name'])
+        }
+
     }
 </script>
 
 <style scoped>
-
+    .login-modal {
+        padding: 30px;
+        background: rgba(0, 0, 0, 0.5);
+    }
 </style>
