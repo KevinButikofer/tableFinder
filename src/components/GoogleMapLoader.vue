@@ -48,6 +48,9 @@ computed: {
     });    
     this.map.panTo(myLatLng);
     marker.setMap(this.map);
+    marker.addListener('click', function() {
+          this.map.setCenter(marker.getPosition());
+        });
     }
   }
 }

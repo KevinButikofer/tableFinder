@@ -15,11 +15,11 @@
             <ion-tab-bar slot="bottom">
                 <ion-tab-button tab="booking">
                     <ion-icon name="book"></ion-icon>
-                    <ion-label>Booking</ion-label>
+                    <ion-label>{{$t('bookingView.title')}}</ion-label>
                 </ion-tab-button>
                 <ion-tab-button tab="restaurant">
                     <ion-icon name="restaurant"></ion-icon>
-                    <ion-label>Search</ion-label>
+                    <ion-label>{{$t('searchView.title')}}</ion-label>
                 </ion-tab-button>
             </ion-tab-bar>
         </ion-tabs>

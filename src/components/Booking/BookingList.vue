@@ -1,11 +1,11 @@
 <template>
     <ion-list>
         <ion-list-header>
-            <ion-label>Booking informations</ion-label>
+            <ion-label>{{$t('bookingView.listHeader')}}</ion-label>
         </ion-list-header>
         <ion-item-divider>
             <ion-label>
-                your booked restaurant
+                {{$t('bookingView.currentBooking')}}
             </ion-label>
         </ion-item-divider>
         <div v-for="(item, index) in listBooking"
@@ -14,7 +14,7 @@
         </div>
         <ion-item-divider>
             <ion-label>
-                History
+                {{$t('bookingView.history')}}
             </ion-label>
         </ion-item-divider>
         <div v-for="(item, index) in listHistory"

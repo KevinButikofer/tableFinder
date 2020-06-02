@@ -9,7 +9,7 @@
         </ion-content>
         <ion-footer translucent="true">
             <ion-toolbar>
-                <ion-button class="ion-margin" expand="block" color="success">Book</ion-button>
+                <ion-button class="ion-margin" @click="bookCurrentRest()" expand="block" color="success">Book</ion-button>
             </ion-toolbar>
         </ion-footer>
     </ion-app>
@@ -21,8 +21,6 @@
     import OccupationCard from "../components/RestaurantDetails/OccupationCard";
     import LocationCard from "../components/RestaurantDetails/LocationCard";
 
-    import BookingDetailCard from"../components/Booking/BookingDetailCard";
-
     export default {
         name: "RestaurantInfos",
 
@@ -30,6 +28,11 @@
              restaurant :{
                 get()  {
                     return this.$store.getters.selectedRestaurant
+                }
+             },
+            dateS :{
+                get()  {
+                    return this.$store.getters.date
                 }
             },
         },
@@ -43,6 +46,12 @@
                 }, 2000);
 
             },
+            bookCurrentRest()
+            {                
+                var bookingDate = this.dateS
+                bookingDate.setHours(this.dateS.getHours() + 2)
+                this.$store.dispatch('addBooking', {id : this.restaurant.id, date: bookingDate, nbPersonne: this.restaurant.nbPersonne})
+            }
 
         },
         components: {
@@ -50,7 +59,6 @@
             BookingInfoCard,
             OccupationCard,
             LocationCard,
-            BookingDetailCard,
         } 
     }
 </script>

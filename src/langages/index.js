@@ -1,0 +1,70 @@
+import Vue from 'vue'
+import VueI18n from 'vue-i18n'
+Vue.use(VueI18n)
+
+const messages = {
+    en: {
+        button:{
+          ok:'Ok',
+          cancel:'Cancel',
+        },
+        searchView: {
+            title: 'Search',
+            search :'Search',
+            findTable: 'Find a table',
+            location: 'Location',
+            currentLoc: 'Current Location',
+            foodStyle:'Food Style',
+            booking:'Booking',
+            start:'Start',
+            end:'To',
+            people:'People'
+        },
+        bookingView:{
+            title:'Booking',
+            listHeader:'Booking informations',
+            currentBooking : 'Your booked restaurants',
+            history: 'History',
+            eraseHistory: 'Erase History',
+            rebook:'Rebook',
+            delete:'Delete',
+            cancel:'Cancel'
+        }
+    },
+    fr: {
+        button:{
+            ok:'Ok',
+            cancel:'Annulé',
+        },
+        searchView: {
+            title: 'Rechercher',
+            search : 'Chercher',
+            findTable: 'Cherche un restaurant',
+            location: 'Position',
+            currentLoc: 'Position Actuelle',
+            foodStyle: 'Type de nourriture',
+            booking: 'Réservation',
+            start:'Début',
+            end:'À',
+            people:'Personne'
+        },
+        bookingView:{
+            title:'Réservations',
+            listHeader:'Informations de Réservation',
+            currentBooking : 'Vos réservations',
+            history: 'Historique',
+            eraseHistory: "Vider l'historique",
+            rebook:'ReFaire',
+            delete:'Effacer',
+            cancel:'Annulé'
+        }
+    }
+}
+
+// Create VueI18n instance with options
+const i18n = new VueI18n({
+    locale: 'en', // set locale
+    messages, // set locale messages
+})
+
+export default  i18n
