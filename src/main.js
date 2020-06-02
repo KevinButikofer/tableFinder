@@ -10,6 +10,7 @@ Vue.config.productionTip = false
 import Ionic from '@ionic/vue'
 import '@ionic/core/css/ionic.bundle.css'
 import '@ionic/core/css/core.css'
+import './registerServiceWorker'
 
 Vue.use(Ionic)
 new Vue({
