@@ -1,8 +1,8 @@
 <template>
     <ion-list>
-        <ion-list-header>
+        <!-- <ion-list-header>
             <ion-label>{{$t('bookingView.listHeader')}}</ion-label>
-        </ion-list-header>
+        </ion-list-header> -->
         <ion-item-divider>
             <ion-label>
                 {{$t('bookingView.currentBooking')}}

@@ -1,6 +1,6 @@
 <template>
     <ion-header translucent no-border>
-        <ion-toolbar>
+        <ion-toolbar :style="headerStyle">
             <ion-buttons slot="start">
                 <ion-button @click="$router.push({name: 'restaurant'})" color="light">
                     <ion-icon slot="start" name="arrow-back"></ion-icon>
@@ -13,12 +13,22 @@
 <script>
     export default {
         name: "ImageHeader",
+
+        mounted() {
+            console.log();
+        },
+
+        computed: {
+
+            headerStyle() {
+                return {
+                    height: `200px`,
+                    '--background': 'linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0)), url(' + this.$store.getters.selectedRestaurant.image + ') no-repeat center/cover'
+                };
+            }
+        }
     }
 </script>
 
 <style scoped>
-    ion-toolbar {
-        height: 200px;
-        --background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 0)), url(/images/italian.jpg) no-repeat center/cover;
-    }
 </style>

@@ -11,8 +11,8 @@
                 <ion-thumbnail slot="start">
                     <img :src="item.image">
                 </ion-thumbnail>
-                <ion-badge v-if="item.place > 0" color="success" slot="end">{{item.place}}</ion-badge>
-                <ion-badge v-else color="danger" slot="end">{{item.place}}</ion-badge>
+                <!-- <ion-badge v-if="item.place > 0" color="success" slot="end">{{item.place}}</ion-badge>
+                <ion-badge v-else color="danger" slot="end">{{item.place}}</ion-badge>-->
                 <ion-label>
                     <h2>{{item.name}}</h2>
                     <h3>{{item.address}}, {{item.city}}</h3>

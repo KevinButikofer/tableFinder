@@ -1,9 +1,7 @@
 <template>
     <ion-grid>
         <ion-row>
-            <ion-col>
-                <ClientInfo/>
-            </ion-col>
+            <ClientInfo/>
         </ion-row>
         <ion-row>
             <BookingInfo/>
@@ -14,7 +12,6 @@
             </ion-col>
         </ion-row>
     </ion-grid>
-
 </template>
 
 <script>
