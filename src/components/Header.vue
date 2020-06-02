@@ -40,7 +40,7 @@
                         <ion-icon name="globe" slot="start"></ion-icon>
                         <ion-label>
                             <ion-select :value="$i18n.locale" interface="popover"
-                                        @ionChange="$i18n.locale = $event.target.value">
+                                        @ionChange="changeLang($event)">
                                 <ion-select-option value="en">
                                     English
                                 </ion-select-option>
@@ -78,6 +78,10 @@
             ...mapActions(['logout']),
             login() {
                 this.$router.push({name: 'login'})
+            },
+            changeLang(event){
+                this.$i18n.locale = event.target.value
+                localStorage.lang = event.target.value
             }
         },
         computed: {
