@@ -6,7 +6,7 @@
             <BookingInfoCard/>
             <OccupationCard/>
             <LocationCard/>
-            <BookingDetailCard/>
+           <!-- <BookingDetailCard/> -->
         </ion-content>
         <ion-footer translucent="true">
             <ion-toolbar>
@@ -21,7 +21,6 @@
     import BookingInfoCard from "../components/RestaurantDetails/BookingInfoCard";
     import OccupationCard from "../components/RestaurantDetails/OccupationCard";
     import LocationCard from "../components/RestaurantDetails/LocationCard";
-    import BookingDetailCard from"../components/Booking/BookingDetailCard";
 
     export default {
         name: "RestaurantInfos",
@@ -61,7 +60,6 @@
             BookingInfoCard,
             OccupationCard,
             LocationCard,
-            BookingDetailCard,
         } 
     }
 </script>
