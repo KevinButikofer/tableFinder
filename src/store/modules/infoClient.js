@@ -4,7 +4,7 @@ const state = {
     date: new Date(),
     startHour : new Date(),
     toHour : new Date(),
-    peopleNumber : 0,
+    peopleNumber : 1,
     latitude: '',
     longitude:'',
     isGpsOk: false,

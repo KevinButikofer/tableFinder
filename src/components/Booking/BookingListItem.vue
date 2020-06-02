@@ -1,5 +1,5 @@
 <template>
-    <ion-item-sliding ref="slide">
+    <ion-item-sliding ref="slide" @click="showRestaurant()" >
         <ion-item-options>
             <ion-item-option button v-if="isDisabled" @click="deleteBooking()" color="danger">
                 <ion-icon name="trash"></ion-icon>
@@ -49,7 +49,7 @@
             ...mapActions(['removeBooking']),
             showRestaurant(){
                 this.$store.dispatch("fetchSelectedRestaurant", this.infoRestaurant);
-                this.$router.push({name: 'RestaurantInfo'})
+                this.$router.push({name: 'RestaurantInfo', params: {hideBook: 'true'}})
                 console.log(this.$store.getters.selectedRestaurant);
             },
             deleteBooking() {

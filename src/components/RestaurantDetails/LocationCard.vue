@@ -1,9 +1,9 @@
 <template>
     <ion-card>
-      <ion-card-header>
+      <!-- <ion-card-header>
         <ion-card-title>Location</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
+      </ion-card-header>-->
+      <ion-card-content no-padding>
           <GoogleMapLoader
           :mapConfig="{
   center: { lat: 46.990438, lng: 6.929677},
