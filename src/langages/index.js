@@ -12,6 +12,7 @@ const messages = {
             header:'Erase history'
         },
         login: {
+            errorData:'Must not be empty',
             login: 'Login',
             logout: 'Logout',
             username:'Username',
@@ -55,6 +56,7 @@ const messages = {
             header:"Effacer l'historique"
         },
         login: {
+            errorData:'Ne doit pas être vide',
             login: 'Connexion',
             logout: 'Deconnexion',
             username:"Nom d'utilisateur",

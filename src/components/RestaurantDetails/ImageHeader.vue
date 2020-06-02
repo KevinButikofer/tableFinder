@@ -2,13 +2,13 @@
     <ion-header translucent no-border>
         <ion-toolbar :style="headerStyle">
             <ion-buttons slot="start">
-                 <ion-button v-if="this.$route.params.hideBook" @click="$router.push('/')" color="light">
+                 <ion-button v-if="this.$route.params.hideBook == 'true' " @click="$router.push('/')" color="light">
                     <ion-icon slot="start" name="arrow-back"></ion-icon>
                 </ion-button>
                 <ion-button v-else @click="$router.push({name: 'restaurant'})" color="light">
                     <ion-icon slot="start" name="arrow-back"></ion-icon>
                 </ion-button>
-               
+
             </ion-buttons>
         </ion-toolbar>
     </ion-header>
