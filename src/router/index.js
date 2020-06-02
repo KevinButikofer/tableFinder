@@ -2,9 +2,15 @@ import Vue from 'vue'
 import {IonicVueRouter} from "@ionic/vue";
 import Tabs from "../views/Tabs";
 import RestInfo from "../views/RestaurantDetailsView";
+import LoginView from "../views/LoginView";
 Vue.use(IonicVueRouter)
 
 const routes = [
+  {
+    path:'/login',
+    name:'login',
+    component: LoginView
+  },
   {
     path: '/tab',
     name: 'Tab',

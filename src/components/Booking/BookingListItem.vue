@@ -1,11 +1,11 @@
 <template>
     <ion-item-sliding ref="slide">
         <ion-item-options>
-            <ion-item-option v-if="isDisabled" @click="deleteBooking()" color="danger">
+            <ion-item-option button v-if="isDisabled" @click="deleteBooking()" color="danger">
                 <ion-icon name="trash"></ion-icon>
                 {{$t('bookingView.delete')}}
             </ion-item-option>
-            <ion-item-option @click="slideButton()" :color="colorButton">{{textButton}}</ion-item-option>
+            <ion-item-option button @click="slideButton()" :color="colorButton">{{textButton}}</ion-item-option>
         </ion-item-options>
         <ion-item v-bind:class="{disabled : isDisabled}">
 

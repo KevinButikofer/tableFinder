@@ -6,7 +6,18 @@
     <ion-menu-controller></ion-menu-controller>
   </div>
 </template>
-
+<script>
+  import { mapActions} from 'vuex'
+  export default {
+    name:'app',
+    methods:{
+      ...mapActions(['loadUser'])
+    },
+    mounted() {
+      this.loadUser()
+    }
+  }
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
