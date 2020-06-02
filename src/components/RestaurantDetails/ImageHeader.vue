@@ -6,7 +6,6 @@
                     <ion-icon slot="start" name="arrow-back"></ion-icon>
                 </ion-button>
             </ion-buttons>
-            <ion-title>&nbsp;</ion-title>
         </ion-toolbar>
     </ion-header>
 </template>

@@ -2,11 +2,10 @@
     <ion-app>
         <ImageHeader/>
         <ion-content >
-        <h1>{{ restaurant.name }}</h1>
-            <BookingInfoCard/>
+            <BookingInfoCard :restName="restaurant.name" />
             <OccupationCard/>
             <LocationCard/>
-            <BookingDetailCard/>
+            <!-- <BookingDetailCard/> -->
         </ion-content>
         <ion-footer translucent="true">
             <ion-toolbar>

@@ -1,7 +1,7 @@
 <template>
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Booking informations</ion-card-title>
+        <ion-card-title>{{restName}}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         For <span>{{peopleNumber}}</span> people <br/>
@@ -14,6 +14,9 @@
 <script>
   export default {
       name: "BookingInfoCard",
+      props: {
+          restName: String,
+      },
       computed :
       {
         date: {
