@@ -32,7 +32,7 @@ const actions = {
     },
     async addBooking({commit}, booking) {
         let listBooking = (localStorage.listBooking) ? JSON.parse(localStorage.listBooking) : []
-        listBooking.append(booking)
+        listBooking.push(booking)
         localStorage.listBooking = JSON.stringify(listBooking)
         let lists = toLists(listBooking)
         commit('setListBooking', lists[0])

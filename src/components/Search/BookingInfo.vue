@@ -7,7 +7,7 @@
             <ion-col col-6>
                 <ion-item>
                     <ion-label position="floating">Date</ion-label>
-                    <ion-datetime v-bind:value="date" display-format="D MMM YYYY" :min="today"
+                    <ion-datetime v-bind:value="date" @ionChange="date = $event.target.value;" display-format="MMM D YYYY" :min="today"
                                   :max="maxDate"></ion-datetime>
                 </ion-item>
             </ion-col>
@@ -117,6 +117,7 @@
             },
         },
         mounted() {
+        
         var today = new Date();
         today.setHours(today.getHours() + 1)
         this.toHour = today;
