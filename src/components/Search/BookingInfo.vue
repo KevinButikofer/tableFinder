@@ -1,7 +1,9 @@
 <template>
     <ion-grid>
         <ion-row>
-            <h1 size="medium">{{$t('searchView.booking')}}</h1>
+            <ion-col>
+                <h1>{{$t('searchView.booking')}}</h1>
+            </ion-col>
         </ion-row>
         <ion-row>
             <ion-col col-6>

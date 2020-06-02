@@ -1,8 +1,8 @@
 <template>
-    <form>
+    <ion-grid>
         <ion-row>
             <ion-col>
-                <h2 float-left>Restaurants</h2>
+                <h1>Restaurants</h1>
             </ion-col>
         </ion-row>
         <ion-row>
@@ -35,8 +35,7 @@
                 </ion-item>
             </ion-col>
         </ion-row>
-    </form>
-
+    </ion-grid>
 </template>
 
 <script>
