@@ -12,8 +12,9 @@
             <ion-thumbnail slot="start">
                 <img :src="infoRestaurant.image">
             </ion-thumbnail>
-            <ion-icon slot="end" name="logo-ionic"></ion-icon>
-            <ion-note slot="end" style="font-size: 12;" color="success">{{item.people}}</ion-note>
+            
+            <p slot="end" class="ion-text-wrap" style="font-size: 20px;">{{item.people}}</p>
+            <ion-icon slot="end" name="person"></ion-icon>            
             <ion-label>
                 <h2>{{infoRestaurant.name}}</h2>
                 <h3>{{infoRestaurant.address}}, {{infoRestaurant.city}}</h3>
