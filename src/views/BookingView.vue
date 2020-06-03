@@ -40,15 +40,23 @@
         },
 
         methods: {
-            eraseCurrentHistory() {
+            async eraseCurrentHistory() {
                 return this.$ionic.alertController
                     .create({
                         header: this.$t('modalHistory.header'),
                         message: this.$t('modalHistory.message'),
                         buttons: [{
                             text: this.$t('modalHistory.yes'),
-                            handler: () => {
-                                this.eraseHistory()
+                            handler: async () => {
+                                let spinner = await this.$ionic.loadingController.create({
+                                    message: 'Please wait...',
+                                });
+                                await spinner.present()
+                                setTimeout(() => {
+                                    this.eraseHistory(this.idUser)
+                                    spinner.dismiss()
+                                }, 2000);
+
                             }
                         }, {
                             text: this.$t('modalHistory.no'),
@@ -71,7 +79,7 @@
             },
         },
         computed: {
-            ...mapGetters(['connected']),
+            ...mapGetters(['connected','idUser']),
         },
         components: {
             BookingList,
