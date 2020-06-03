@@ -7,9 +7,12 @@
             <LocationCard/>
             <!-- <BookingDetailCard/> -->
         </ion-content>
-        <ion-footer v-show="!$route.params.hideBook" translucent="true">
+        <ion-footer translucent="true">
             <ion-toolbar>
-                <ion-button class="ion-margin" @click="bookCurrentRest()" expand="block" color="success">Book
+                <ion-button v-if="cancelItem" class="ion-margin" @click="cancelBooking()" expand="block" color="danger">
+                    Cancel
+                </ion-button>
+                <ion-button v-else class="ion-margin" @click="bookCurrentRest()" expand="block" color="success">Book
                 </ion-button>
             </ion-toolbar>
         </ion-footer>
@@ -21,13 +24,12 @@
     import BookingInfoCard from "../components/RestaurantDetails/BookingInfoCard";
     import OccupationCard from "../components/RestaurantDetails/OccupationCard";
     import LocationCard from "../components/RestaurantDetails/LocationCard";
-    import {mapGetters} from 'vuex'
+    import {mapGetters, mapActions} from 'vuex'
 
     export default {
         name: "RestaurantInfos",
-
         computed: {
-            ...mapGetters(['idUser','connected','toHour','peopleNumber']),
+            ...mapGetters(['idUser', 'connected', 'toHour', 'peopleNumber', 'cancelItem', 'selectItem']),
             restaurant: {
                 get() {
                     return this.$store.getters.selectedRestaurant
@@ -40,6 +42,26 @@
             },
         },
         methods: {
+            ...mapActions(['removeBooking']),
+            cancelBooking() {
+                return this.$ionic.alertController
+                    .create({
+                        header: `${this.restaurant.name} booking`,
+                        subHeader: `${new Date(this.selectItem.date).toDateString()} ${new Date(this.selectItem.date).toLocaleTimeString().slice(0, -3)}`,
+                        message: `Do you really want to cancel your booking `,
+                        buttons: [{
+                            text: 'Yes',
+                            handler: () => {
+                                this.removeBooking(this.selectItem)
+                                this.$router.back()
+                            }
+                        }, {
+                            text: 'No',
+                            role: 'cancel',
+                        }],
+                    })
+                    .then(a => a.present())
+            },
             doRefresh(event) {
                 console.log('Begin async operation');
 
@@ -50,21 +72,39 @@
 
             },
             bookCurrentRest() {
-                if(this.connected){
-                    console.log(this.dateS)
-                    this.$store.dispatch('addBooking', {
-                        idUser: this.idUser,
-                        idRestaurant: this.restaurant.id,
-                        date: this.dateS,
-                        end: this.toHour,
-                        people: this.peopleNumber
-                    })
-                    this.$router.push('/')
-                }else{
-                    this.$router.push({name:'login'})
-                }
+                if (this.connected) {
+                    return this.$ionic.alertController
+                        .create({
+                            header: 'Booking',
+                            message: 'Confirm Booking',
+                            buttons: [{
+                                text: 'Yes',
+                                handler: () => {
+                                    this.$store.dispatch('addBooking', {
+                                        idUser: this.idUser,
+                                        idRestaurant: this.restaurant.id,
+                                        date: this.dateS,
+                                        end: this.toHour,
+                                        people: this.peopleNumber
+                                    })
+                                    this.$router.push('/')
 
+                                }
+                            }, {
+                                text: 'No',
+                                role: 'cancel',
+                                handler: () => {
+                                    this.$refs.slide.close()
+                                }
+                            }],
+                        })
+                        .then(a => a.present())
+
+                } else {
+                    this.$router.push({name: 'login'})
+                }
             }
+
 
         },
         components: {
@@ -73,8 +113,8 @@
             OccupationCard,
             LocationCard,
         },
-        mounted()
-        {
+        mounted() {
+            console.log(this.cancelItem)
             console.log(this.$route.params.hideBook)
         }
     }

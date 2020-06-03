@@ -12,7 +12,8 @@
             <ion-thumbnail slot="start">
                 <img :src="infoRestaurant.image">
             </ion-thumbnail>
-
+            <ion-icon slot="end" name="logo-ionic"></ion-icon>
+            <ion-note slot="end" style="font-size: 12;" color="success">{{item.people}}</ion-note>
             <ion-label>
                 <h2>{{infoRestaurant.name}}</h2>
                 <h3>{{infoRestaurant.address}}, {{infoRestaurant.city}}</h3>
@@ -46,8 +47,9 @@
             }
         },
         methods: {
-            ...mapActions(['removeBooking','fetchPeopleNumber','fetchDate','fetchStartHour','fetchToHour']),
+            ...mapActions(['removeBooking','fetchPeopleNumber','fetchDate','fetchStartHour','fetchToHour','fetchSelectItem']),
             showRestaurant(){
+                this.fetchSelectItem({item:this.item,cancel:!this.isDisabled})
                 this.fetchStartHour(new Date(this.item.date))
                 this.fetchToHour(new Date(this.item.end))
                 this.fetchDate(new Date(this.item.date))
