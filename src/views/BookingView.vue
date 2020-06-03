@@ -34,7 +34,7 @@
         name: "BookingView",
         data() {
             return {
-                ...mapActions(['eraseHistory',]),
+                ...mapActions(['eraseHistory']),
                 rerender: 0,
             }
         },

@@ -8,11 +8,11 @@
             <!-- <BookingDetailCard/> -->
         </ion-content>
         <ion-footer translucent="true">
-            <ion-toolbar>
+            <ion-toolbar v-if="$route.params.book || cancelItem">
                 <ion-button v-if="cancelItem" class="ion-margin" @click="cancelBooking()" expand="block" color="danger">
                     Cancel
                 </ion-button>
-                <ion-button v-else class="ion-margin" @click="bookCurrentRest()" expand="block" color="success">Book
+                <ion-button v-else-if="$route.params.book" class="ion-margin" @click="bookCurrentRest()" expand="block" color="success">Book
                 </ion-button>
             </ion-toolbar>
         </ion-footer>
@@ -29,7 +29,7 @@
     export default {
         name: "RestaurantInfos",
         computed: {
-            ...mapGetters(['idUser', 'connected', 'toHour', 'peopleNumber', 'cancelItem', 'selectItem']),
+            ...mapGetters(['idUser', 'connected', 'toHour', 'peopleNumber', 'startHour','cancelItem', 'selectItem',]),
             restaurant: {
                 get() {
                     return this.$store.getters.selectedRestaurant
@@ -42,7 +42,7 @@
             },
         },
         methods: {
-            ...mapActions(['removeBooking']),
+            ...mapActions(['removeBooking','fetchPeopleNumber','fetchToHour','fetchStartHour','fetchDate','fetchStartHour']),
             cancelBooking() {
                 return this.$ionic.alertController
                     .create({
@@ -75,8 +75,9 @@
                 if (this.connected) {
                     return this.$ionic.alertController
                         .create({
-                            header: 'Booking',
-                            message: 'Confirm Booking',
+                            header: `${this.restaurant.name} booking`,
+                            subHeader: `${this.dateS.toDateString()} ${this.dateS.toLocaleTimeString().slice(0, -3)}`,
+                            message: `Confirm Booking for ${this.peopleNumber} people`,
                             buttons: [{
                                 text: 'Yes',
                                 handler: () => {
@@ -103,7 +104,7 @@
                 } else {
                     this.$router.push({name: 'login'})
                 }
-            }
+            },
 
 
         },

@@ -24,7 +24,8 @@
             <ion-col>
                 <ion-item>
                     <ion-label>{{$t('searchView.foodStyle')}}</ion-label>
-                    <ion-select :ok-text="$t('button.ok')" :cancel-text="$t('button.cancel')" multiple="true" id="select" @ionChange="foodStyle=$event.target.value">
+                    <ion-select :ok-text="$t('button.ok')" :cancel-text="$t('button.cancel')" multiple="true"
+                                id="select" @ionChange="foodStyle=$event.target.value">
                         <ion-select-option
                                 v-for="(item, index) in FOODSTYLE"
                                 :key="index"
@@ -48,14 +49,17 @@
             return {
                 FOODSTYLE: FOODSTYLE,
                 activeColor: 'black',
-                linkGps:['/images/icons/gpsOK.svg','/images/icons/gpsNOK.svg'],
+                linkGps: ['/images/icons/gpsOK.svg', '/images/icons/gpsNOK.svg'],
             }
+        }, mounted() {
+            this.clearLocalisation()
         },
         methods: {
-            ...mapActions(['fetchLatitude','fetchLongitude','fetchIsGpsOk']),
-            clearLocalisation(){
-                this.activeColor='#000000'
-                this.localisation=""
+            ...mapActions(['fetchLatitude', 'fetchLongitude', 'fetchIsGpsOk']),
+            clearLocalisation() {
+                this.activeColor = '#000000'
+                this.localisation = ""
+                this.fetchIsGpsOk(false)
             },
             position() {
                 navigator.geolocation.getCurrentPosition(pos => {
@@ -84,7 +88,7 @@
             }
         },
         computed: {
-            ...mapGetters(['latitude','longitude','isGpsOk']),
+            ...mapGetters(['latitude', 'longitude', 'isGpsOk']),
             localisation: {
                 get() {
                     return this.$store.getters.localisation

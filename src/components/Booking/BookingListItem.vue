@@ -1,11 +1,11 @@
 <template>
-    <ion-item-sliding ref="slide" @click="showRestaurant()" >
+    <ion-item-sliding ref="slide" @click="showRestaurant()">
         <ion-item-options>
             <ion-item-option button v-if="isDisabled" v-on:click.stop="deleteBooking" color="danger">
                 <ion-icon name="trash"></ion-icon>
                 {{$t('bookingView.delete')}}
             </ion-item-option>
-            <ion-item-option button v-on:click.stop="slideButton" :color="colorButton">{{textButton}}</ion-item-option>
+            <ion-item-option v-if="!isDisabled" button v-on:click.stop="slideButton" :color="colorButton">{{textButton}}</ion-item-option>
         </ion-item-options>
         <ion-item v-bind:class="{disabled : isDisabled}">
 
@@ -48,15 +48,15 @@
             }
         },
         methods: {
-            ...mapActions(['removeBooking','fetchPeopleNumber','fetchDate','fetchStartHour','fetchToHour','fetchSelectItem']),
-            showRestaurant(){
-                this.fetchSelectItem({item:this.item,cancel:!this.isDisabled})
+            ...mapActions(['removeBooking', 'fetchPeopleNumber', 'fetchDate', 'fetchStartHour', 'fetchToHour', 'fetchSelectItem']),
+            showRestaurant() {
+                this.fetchSelectItem({item: this.item, cancel: !this.isDisabled})
                 this.fetchStartHour(new Date(this.item.date))
                 this.fetchToHour(new Date(this.item.end))
                 this.fetchDate(new Date(this.item.date))
                 this.fetchPeopleNumber(this.item.people)
                 this.$store.dispatch("fetchSelectedRestaurant", this.infoRestaurant);
-                this.$router.push({name: 'RestaurantInfo', params: {hideBook: !this.isDisabled}})
+                this.$router.push({name: 'RestaurantInfo', params: {book: false}})
             },
             deleteBooking() {
                 this.removeBooking(this.item)
@@ -84,64 +84,7 @@
                             }],
                         })
                         .then(a => a.present())
-                } else {
-                    return this.$ionic.alertController
-                        .create({
-                            header: this.$t('bookingView.listHeader'),
-                            inputs: [
-                                // input date with min & max
-                                {
-                                    name: 'date',
-                                    label: 'Date',
-                                    type: 'Date',
-                                    min: new Date().toISOString(),
-                                    value: this.dateForm.toISOString()
-                                },
-                                // input date without min nor max
-                                {
-                                    name: 'start',
-                                    label: 'Start',
-                                    type: 'time',
-                                    min: new Date().toTimeString(),
-                                    value: this.startHour.toTimeString()
-                                },
-                                {
-                                    name: 'end',
-                                    label: 'End',
-                                    type: 'time',
-                                    min: new Date().toTimeString(),
-                                    value: this.toHour.toTimeString()
-                                },
-                                {
-                                    name: 'people',
-                                    label: 'People',
-                                    type: 'number',
-                                    min: 1,
-                                    value: this.peopleNumber
-                                },
-                            ],
-                            buttons: [
-                                {
-                                    text: 'Cancel',
-                                    role: 'cancel',
-                                    cssClass: 'secondary',
-                                    handler: () => {
-                                        this.$refs.slide.close()
-                                    },
-                                },
-                                {
-                                    text: 'Ok',
-                                    handler: (info) => {
-                                        this.dateForm = info.date
-                                        this.startHour = `${new Date(info.date).toDateString()} ${info.start}`
-                                        this.toHour = `${new Date(info.date).toDateString()} ${info.end}`
-                                        this.peopleNumber = info.people
-                                        this.showRestaurant()
-                                    },
-                                },
-                            ],
-                        })
-                        .then(a => a.present())
+
                 }
             }
         },
@@ -156,7 +99,7 @@
                     this.infoRestaurant = value
                 }
             })
-            this.date = `${date.toDateString()} ${date.toLocaleTimeString().slice(0,-3)}`
+            this.date = `${date.toDateString()} ${date.toLocaleTimeString().slice(0, -3)}`
         },
         computed: {
             ...mapGetters(['listBooking']),

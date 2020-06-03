@@ -17,7 +17,7 @@
                 <ion-refresher-content></ion-refresher-content>
             </ion-refresher>
             <ion-grid v-show="!showResult">
-                <SearchInfo/>
+                <SearchInfo :key="rerender"/>
             </ion-grid>
             <ion-grid v-show="showResult">
                 <RestaurantInfo/>
@@ -38,6 +38,11 @@
 
     export default {
         name: "RestaurantView",
+        data(){
+          return{
+              rerender:0
+          }
+        },
         computed:
             {
                 showResult: {
@@ -50,11 +55,14 @@
                 }
             },
         methods: {
+            reload() {
+                this.rerender += 1
+            },
             doRefresh(event) {
                 console.log('Begin async operation');
 
                 setTimeout(() => {
-                    console.log('Async operation has ended');
+                    this.reload()
                     event.target.complete();
                 }, 2000);
 
