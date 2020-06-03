@@ -57,7 +57,9 @@ const actions = {
 const mutations = {
     setLocalisation: (state, loc) => (state.localisation = loc),
     setFoodStyle: (state, style) => (state.foodStyle = style),
-    setDate: (state, date) => (state.date = date),
+    setDate: (state, date) => {
+        console.log(date)
+        state.date = date},
     setStartHour: (state, hour) => (state.startHour = hour),
     setToHour: (state, hour) => (state.toHour = hour),
     setPeopleNumber: (state, peopleNumber) => (state.peopleNumber = peopleNumber),

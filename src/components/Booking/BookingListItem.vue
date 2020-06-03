@@ -153,7 +153,7 @@
                     this.infoRestaurant = value
                 }
             })
-            this.date = date.toUTCString().slice(0, -3)
+            this.date = `${date.toDateString()} ${date.toLocaleTimeString().slice(0,-3)}`
         },
         computed: {
             ...mapGetters(['listBooking']),

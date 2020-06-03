@@ -55,8 +55,8 @@
                     this.$store.dispatch('addBooking', {
                         idUser: this.idUser,
                         idRestaurant: this.restaurant.id,
-                        date: new Date(this.dateS.setHours(this.dateS.getHours() + 2)),
-                        end: new Date(this.toHour.setHours(this.toHour.getHours() + 2)),
+                        date: this.dateS,
+                        end: this.toHour,
                         people: this.peopleNumber
                     })
                     this.$router.push('/')
