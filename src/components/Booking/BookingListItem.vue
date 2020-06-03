@@ -7,7 +7,7 @@
             </ion-item-option>
             <ion-item-option v-if="!isDisabled" button v-on:click.stop="slideButton" :color="colorButton">{{textButton}}</ion-item-option>
         </ion-item-options>
-        <ion-item v-bind:class="{disabled : isDisabled}">
+        <ion-item button v-bind:class="{disabled : isDisabled}">
 
             <ion-thumbnail slot="start">
                 <img :src="infoRestaurant.image">
