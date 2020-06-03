@@ -1,12 +1,11 @@
 function toLists(listBooking, idUser) {
     let now = new Date()
-    let timer = new Date().setHours(now.getHours() + 1)
     let listTemp = []
     let listHistory = []
 
     listBooking.forEach(o => {
         if (o.idUser == idUser) {
-            if (new Date(o.date) < timer) {
+            if (new Date(o.end) < now) {
                 listHistory.push(o)
             } else {
                 listTemp.push(o)

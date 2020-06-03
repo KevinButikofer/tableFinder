@@ -27,7 +27,7 @@
         name: "RestaurantInfos",
 
         computed: {
-            ...mapGetters(['idUser','connected']),
+            ...mapGetters(['idUser','connected','toHour','peopleNumber']),
             restaurant: {
                 get() {
                     return this.$store.getters.selectedRestaurant
@@ -51,13 +51,13 @@
             },
             bookCurrentRest() {
                 if(this.connected){
-                    var bookingDate = this.dateS
-                    bookingDate.setHours(this.dateS.getHours() + 2)
+                    console.log(this.dateS)
                     this.$store.dispatch('addBooking', {
                         idUser: this.idUser,
                         idRestaurant: this.restaurant.id,
-                        date: bookingDate,
-                        nbPersonne: this.restaurant.nbPersonne
+                        date: new Date(this.dateS.setHours(this.dateS.getHours() + 2)),
+                        end: new Date(this.toHour.setHours(this.toHour.getHours() + 2)),
+                        people: this.peopleNumber
                     })
                     this.$router.push('/')
                 }else{

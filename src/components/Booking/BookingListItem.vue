@@ -46,8 +46,12 @@
             }
         },
         methods: {
-            ...mapActions(['removeBooking']),
+            ...mapActions(['removeBooking','fetchPeopleNumber','fetchDate','fetchStartHour','fetchToHour']),
             showRestaurant(){
+                this.fetchStartHour(new Date(this.item.date))
+                this.fetchToHour(new Date(this.item.end))
+                this.fetchDate(new Date(this.item.date))
+                this.fetchPeopleNumber(this.item.people)
                 this.$store.dispatch("fetchSelectedRestaurant", this.infoRestaurant);
                 this.$router.push({name: 'RestaurantInfo', params: {hideBook: !this.isDisabled}})
             },
