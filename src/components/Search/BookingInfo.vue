@@ -9,14 +9,15 @@
             <ion-col col-6>
                 <ion-item>
                     <ion-label position="floating">Date</ion-label>
-                    <ion-datetime v-bind:value="date" @ionChange="date = $event.target.value;" display-format="MMM D YYYY" :min="today"
+                    <ion-datetime v-bind:value="new Date()" @ionChange="date = $event.target.value;"
+                                  display-format="MMM D YYYY" :min="today"
                                   :max="maxDate"></ion-datetime>
                 </ion-item>
             </ion-col>
             <ion-col col-6>
                 <ion-item>
                     <ion-label position="floating">{{$t('searchView.people')}}</ion-label>
-                    <ion-input v-bind:value="peopleNumber" @ionChange="peopleNumber=$event.target.value" type="number"></ion-input>
+                    <ion-input value="1" @ionChange="peopleNumber=$event.target.value" type="number"></ion-input>
                 </ion-item>
             </ion-col>
         </ion-row>
@@ -25,8 +26,8 @@
                 <ion-item>
 
                     <ion-label position="floating">{{$t('searchView.start')}}</ion-label>
-                    <ion-datetime v-bind:value="startHour"
-                                  @ionChange="startHour = $event.target.value; updateToHour($event);"
+                    <ion-datetime v-bind:value="new Date()"
+                                  @ionChange="updateStartHour($event)"
                                   display-format="HH:mm"></ion-datetime>
                 </ion-item>
             </ion-col>
@@ -49,10 +50,10 @@
         data() {
             return {
                 today: new Date().toISOString(),
-            //    startHour : new Date().toISOString(),
-            //    $_toHour : null,
-            //    peopleNumber : 0,
-        }
+                //    startHour : new Date().toISOString(),
+                //    $_toHour : null,
+                //    peopleNumber : 0,
+            }
         },
         computed: {
             date: {
@@ -81,7 +82,7 @@
                     this.$store.dispatch('fetchToHour', new Date(value));
                 }
             },
-            peopleNumber:{
+            peopleNumber: {
                 get() {
                     return this.$store.getters.peopleNumber
                 },
@@ -117,12 +118,16 @@
                 }
 
             },
+            updateStartHour(event) {
+                this.startHour = event.target.value
+                this.updateToHour(event);
+            },
         },
         mounted() {
 
-        var today = new Date();
-        today.setHours(today.getHours() + 1)
-        this.toHour = today;
+            var today = new Date();
+            today.setHours(today.getHours() + 1)
+            this.toHour = today;
         }
     }
 </script>
