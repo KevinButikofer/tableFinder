@@ -32,25 +32,26 @@ const actions = {
         commit('setListBooking', lists[0])
         commit('setListHistory', lists[1])
     },
-    async addBooking({commit}, booking) {
+    async addBooking({commit}, booking,idUser) {
         let listBooking = (localStorage.listBooking) ? JSON.parse(localStorage.listBooking) : []
         listBooking.push(booking)
         localStorage.listBooking = JSON.stringify(listBooking)
-        let lists = toLists(listBooking)
+        let lists = toLists(listBooking,idUser)
         commit('setListBooking', lists[0])
         commit('setListHistory', lists[1])
     },
-    async removeBooking({commit}, booking) {
+    async removeBooking({commit}, booking,idUser) {
         let listBooking = (localStorage.listBooking) ? JSON.parse(localStorage.listBooking) : []
         listBooking = listBooking.filter(b => (b.idRestaurant != booking.idRestaurant || b.date != booking.date))
         localStorage.listBooking = JSON.stringify(listBooking)
-        let lists = toLists(listBooking)
+        let lists = toLists(listBooking,idUser)
         commit('setListBooking', lists[0])
         commit('setListHistory', lists[1])
     },
-    async eraseHistory({commit}) {
+    async eraseHistory({commit},idUser) {
         let listBooking = (localStorage.listBooking) ? JSON.parse(localStorage.listBooking) : []
-        let lists = toLists(listBooking)
+        let lists = toLists(listBooking,idUser)
+        console.log(lists)
         localStorage.listBooking = JSON.stringify(lists[0])
         commit('setListBooking', lists[0])
         commit('setListHistory', [])

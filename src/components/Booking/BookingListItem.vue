@@ -12,9 +12,9 @@
             <ion-thumbnail slot="start">
                 <img :src="infoRestaurant.image">
             </ion-thumbnail>
-            
+
             <p slot="end" class="ion-text-wrap" style="font-size: 20px;">{{item.people}}</p>
-            <ion-icon slot="end" name="person"></ion-icon>            
+            <ion-icon slot="end" name="person"></ion-icon>
             <ion-label>
                 <h2>{{infoRestaurant.name}}</h2>
                 <h3>{{infoRestaurant.address}}, {{infoRestaurant.city}}</h3>
@@ -59,7 +59,7 @@
                 this.$router.push({name: 'RestaurantInfo', params: {book: false}})
             },
             deleteBooking() {
-                this.removeBooking(this.item)
+                this.removeBooking(this.item,this.idUser)
                 this.$emit('reload')
             },
             slideButton() {
@@ -72,7 +72,7 @@
                             buttons: [{
                                 text: 'Yes',
                                 handler: () => {
-                                    this.removeBooking(this.item)
+                                    this.removeBooking(this.item,this.idUser)
                                     this.$emit('reload')
                                 }
                             }, {
@@ -102,7 +102,7 @@
             this.date = `${date.toDateString()} ${date.toLocaleTimeString().slice(0, -3)}`
         },
         computed: {
-            ...mapGetters(['listBooking']),
+            ...mapGetters(['listBooking','idUser']),
             dateForm: {
                 get() {
                     return this.$store.getters.date

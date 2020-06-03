@@ -9,7 +9,7 @@
         </ion-content>
         <ion-footer translucent="true">
             <ion-toolbar v-if="$route.params.book || cancelItem">
-                <ion-button v-if="cancelItem" class="ion-margin" @click="cancelBooking()" expand="block" color="danger">
+                <ion-button v-if="cancelItem && !$route.params.book" class="ion-margin" @click="cancelBooking()" expand="block" color="danger">
                     Cancel
                 </ion-button>
                 <ion-button v-else-if="$route.params.book" class="ion-margin" @click="bookCurrentRest()" expand="block" color="success">Book
@@ -87,7 +87,7 @@
                                         date: this.dateS,
                                         end: this.toHour,
                                         people: this.peopleNumber
-                                    })
+                                    },this.idUser())
                                     this.$router.push('/')
 
                                 }
