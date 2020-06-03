@@ -3,9 +3,7 @@
         <ion-item-sliding v-for="(item, index) in filteredRestaurant"
                           :key="index"
                           :value="item">
-            <ion-item-options side="end">
-                <ion-item-option  color="success">Book</ion-item-option>
-            </ion-item-options>
+
 
             <ion-item @click="showRestaurant(item)">
                 <ion-thumbnail slot="start">
@@ -78,7 +76,7 @@
             {
                 showRestaurant: function (rest) {
                     this.$store.dispatch("fetchSelectedRestaurant", rest);
-                    this.$router.push({name: 'RestaurantInfo', params: {hideBook: false}})
+                    this.$router.push({name: 'RestaurantInfo', params: {book: true}})
                 }
             }
     }
