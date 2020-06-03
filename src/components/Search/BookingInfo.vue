@@ -26,7 +26,7 @@
                 <ion-item>
 
                     <ion-label position="floating">{{$t('searchView.start')}}</ion-label>
-                    <ion-datetime v-bind:value="new Date()"
+                    <ion-datetime :value="startHour"
                                   @ionChange="updateStartHour($event)"
                                   display-format="HH:mm"></ion-datetime>
                 </ion-item>
@@ -77,8 +77,6 @@
                     return this.$store.getters.toHour
                 },
                 set(value) {
-                    //alert(value);
-                    //alert(new Date());
                     this.$store.dispatch('fetchToHour', new Date(value));
                 }
             },
@@ -123,11 +121,13 @@
                 this.updateToHour(event);
             },
         },
-        mounted() {
-
-            var today = new Date();
+        created() {
+            
+            /*var today = new Date();
             today.setHours(today.getHours() + 1)
-            this.toHour = today;
+            this.toHour = today;*/
+            //this.updateStartHour();
+            this.updateToHour();
         }
     }
 </script>

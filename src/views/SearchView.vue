@@ -1,7 +1,7 @@
 <template>
     <ion-app>
         <Header v-show="!showResult" :title="$t('searchView.findTable')"/>
-        <ion-header v-show="showResult">
+        <ion-header v-if="showResult">
             <ion-toolbar color="primary">
                 <ion-buttons slot="start">
                     <ion-button @click="showResult = false">
@@ -16,10 +16,10 @@
             <ion-refresher slot="fixed" @ionRefresh="doRefresh($event)">
                 <ion-refresher-content></ion-refresher-content>
             </ion-refresher>
-            <ion-grid v-show="!showResult">
+            <ion-grid v-if="!showResult">
                 <SearchInfo :key="rerender"/>
             </ion-grid>
-            <ion-grid v-show="showResult">
+            <ion-grid v-else>
                 <RestaurantInfo/>
                 <ResultList/>
             </ion-grid>
