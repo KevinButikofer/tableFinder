@@ -8,11 +8,11 @@
             <!-- <BookingDetailCard/> -->
         </ion-content>
         <ion-footer translucent="true">
-            <ion-toolbar v-if="$route.params.book || cancelItem">
-                <ion-button v-if="cancelItem && !$route.params.book" class="ion-margin" @click="cancelBooking()" expand="block" color="danger">
+            <ion-toolbar v-if="book || cancelItem">
+                <ion-button v-if="cancelItem && !book" class="ion-margin" @click="cancelBooking()" expand="block" color="danger">
                     Cancel
                 </ion-button>
-                <ion-button v-else-if="$route.params.book" class="ion-margin" @click="bookCurrentRest()" expand="block" color="success">Book
+                <ion-button v-else-if="book" class="ion-margin" @click="bookCurrentRest()" expand="block" color="success">Book
                 </ion-button>
             </ion-toolbar>
         </ion-footer>
@@ -29,7 +29,7 @@
     export default {
         name: "RestaurantInfos",
         computed: {
-            ...mapGetters(['idUser', 'connected', 'toHour', 'peopleNumber', 'startHour','cancelItem', 'selectItem',]),
+            ...mapGetters(['book','idUser', 'connected', 'toHour', 'peopleNumber', 'startHour','cancelItem', 'selectItem',]),
             restaurant: {
                 get() {
                     return this.$store.getters.selectedRestaurant
@@ -87,7 +87,7 @@
                                         date: this.dateS,
                                         end: this.toHour,
                                         people: this.peopleNumber
-                                    },this.idUser())
+                                    },this.idUser)
                                     this.$router.push('/')
 
                                 }

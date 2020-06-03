@@ -1,6 +1,6 @@
 <template>
     <ion-list>
-        <ion-item-sliding  v-for="(item, index) in filteredRestaurant"
+        <ion-item-sliding v-for="(item, index) in filteredRestaurant"
                           :key="index"
                           :value="item">
 
@@ -31,6 +31,7 @@
 <script>
     import {RESTAURANTS} from "../../datas/restaurants";
     import {MAXNOTE} from "../../datas/notes"
+    import {mapActions} from 'vuex'
 
 
     export default {
@@ -42,43 +43,44 @@
             }
         },
         computed: {
-            filteredRestaurant :
-            {
-                get(){
-                    /*if(this.$store.getters.localisation == "")
-                    {
-                        return RESTAURANTS
-                    }*/
-                    var filteredRestaurant = [];
-                   RESTAURANTS.forEach((rest) => {
-                            // if(rest.place > this.$store.state.peopleNumber
-                            // && rest.location == this.$store.state.location
-                            //  && rest.foodStyle == this.$store.state.foodStyle)
-                            // console.log(rest.city);
-                            // console.log(this.$store.getters.localisation);
-                            //console.log(rest.foodStyle)
-                            //console.log(this.$store.state.foodStyle)
+            filteredRestaurant:
+                {
+                    get() {
+                        /*if(this.$store.getters.localisation == "")
+                        {
+                            return RESTAURANTS
+                        }*/
+                        var filteredRestaurant = [];
+                        RESTAURANTS.forEach((rest) => {
+                                // if(rest.place > this.$store.state.peopleNumber
+                                // && rest.location == this.$store.state.location
+                                //  && rest.foodStyle == this.$store.state.foodStyle)
+                                // console.log(rest.city);
+                                // console.log(this.$store.getters.localisation);
+                                //console.log(rest.foodStyle)
+                                //console.log(this.$store.state.foodStyle)
 
-                            if(rest.city.toLowerCase().includes(this.$store.getters.localisation.toLowerCase())
-                            && ((typeof(this.$store.getters.foodStyle) != "undefined" &  this.$store.getters.foodStyle.includes(rest.style)) || this.$store.getters.foodStyle.length < 1)
-                            && rest.place > this.$store.getters.peopleNumber)
-                            {
-                                filteredRestaurant.push(rest);
+                                if (rest.city.toLowerCase().includes(this.$store.getters.localisation.toLowerCase())
+                                    && ((typeof (this.$store.getters.foodStyle) != "undefined" & this.$store.getters.foodStyle.includes(rest.style)) || this.$store.getters.foodStyle.length < 1)
+                                    && rest.place > this.$store.getters.peopleNumber) {
+                                    filteredRestaurant.push(rest);
+                                }
                             }
-                   }
                         );
                         return filteredRestaurant;
                     }
 
-            }
-        },
-        methods:
-            {
-                showRestaurant: function (rest) {
-                    this.$store.dispatch("fetchSelectedRestaurant", rest);
-                    this.$router.push({name: 'RestaurantInfo', params: {book: true}})
                 }
+        },
+        methods: {
+
+            ...mapActions(['fetchBook']),
+            showRestaurant: function (rest) {
+                this.$store.dispatch("fetchSelectedRestaurant", rest);
+                this.fetchBook(true)
+                this.$router.push({name: 'RestaurantInfo'})
             }
+        }
     }
 
 </script>

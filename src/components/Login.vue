@@ -69,7 +69,7 @@
             ...mapGetters(['idUser']),
         },
         methods: {
-            ...mapActions(['loginStore']),
+            ...mapActions(['loginStore','fetchBook']),
             pwdChange(event) {
                 this.password = event.target.value
                 this.nOkLogin = !(this.password.length != 0 && this.username.length != 0)
@@ -83,6 +83,7 @@
                     if (e.username == this.username && e.password == this.password) {
                         this.loginStore({id: e.id, username: e.username, name: e.name})
                         this.isOk = true
+                        this.fetchBook(true)
                         this.$router.back()
                     }
                 })

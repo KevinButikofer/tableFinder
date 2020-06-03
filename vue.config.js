@@ -4,7 +4,7 @@ module.exports = {
     pwa: {
         name: 'Tablefinder',
         themeColor: '#3880FF',
-        msTileColor: '#FFFFFF',
+        msTileColor: '#3880FF',
         appleMobileWebAppCapable: 'yes',
 
         iconPaths:
