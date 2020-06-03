@@ -1,11 +1,11 @@
 <template>
     <ion-list>
-        <ion-item-sliding v-for="(item, index) in filteredRestaurant"
+        <ion-item-sliding  v-for="(item, index) in filteredRestaurant"
                           :key="index"
                           :value="item">
 
 
-            <ion-item @click="showRestaurant(item)">
+            <ion-item button @click="showRestaurant(item)">
                 <ion-thumbnail slot="start">
                     <img :src="item.image">
                 </ion-thumbnail>
