@@ -1,3 +1,4 @@
+
 const state = {
     localisation: '',
     foodStyle: [],
@@ -48,10 +49,7 @@ const actions = {
         commit('setLongitude', long)
     },
     async fetchIsGpsOk({commit}, isOk) {
-        commit('setIsGpsOk', isOk)
-    },
-    async fetchShowResult({commit}, isShowingResult) {
-        commit('setShowResult', isShowingResult)
+        commit('setIsGpsOk',isOk)
     },
 };
 const mutations = {

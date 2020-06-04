@@ -9,7 +9,7 @@
             <ion-col size="10">
                 <ion-item>
                     <ion-label position="floating">{{$t('searchView.location')}}</ion-label>
-                    <ion-input v-bind:style="{ color: activeColor}" v-bind:value="localisation"
+                    <ion-input autocomplete="on" v-bind:style="{ color: activeColor}" v-bind:value="localisation"
                                @ionChange="localisation=$event.target.value" @click="clearLocalisation"></ion-input>
                 </ion-item>
             </ion-col>
@@ -42,6 +42,7 @@
 <script>
     import {FOODSTYLE} from "../../datas/foodStyle";
     import {mapGetters, mapActions} from 'vuex'
+    import axios from "axios";
 
     export default {
         name: "ClientInfo",
@@ -56,6 +57,18 @@
         },
         methods: {
             ...mapActions(['fetchLatitude', 'fetchLongitude', 'fetchIsGpsOk']),
+            async getLocation() {
+                try {
+                    let url = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${this.latitude}&longitude=${this.longitude}&localityLanguage=${this.$i18n.locale}`
+                    let response = await axios.get(url)
+                    this.localisation = response.data.localityInfo.administrative[1].isoName
+                } catch {
+                    this.activeColor = '#FF9494'
+                    this.localisation = 'Error'
+                    this.fetchIsGpsOk(false)
+                }
+
+            },
             clearLocalisation() {
                 this.activeColor = '#000000'
                 this.localisation = ""
@@ -63,15 +76,15 @@
             },
             position() {
                 navigator.geolocation.getCurrentPosition(pos => {
-                    this.localisation = this.$t('searchView.currentLoc')
-                    this.activeColor = '#3880ff'
                     this.fetchLatitude(pos.coords.latitude)
                     this.fetchLongitude(pos.coords.longitude)
                     this.fetchIsGpsOk(true)
+                    this.getLocation()
                 }, err => {
                     console.log(err)
                     this.activeColor = '#FF9494'
-                    this.localisation = 'Erreur'
+                    this.localisation = 'Error'
+                    this.fetchIsGpsOk(false)
                 })
 
             },
