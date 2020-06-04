@@ -61,7 +61,7 @@
                 try {
                     let url = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${this.latitude}&longitude=${this.longitude}&localityLanguage=${this.$i18n.locale}`
                     let response = await axios.get(url)
-                    this.localisation = response.data.localityInfo.administrative[1].isoName
+                    this.localisation = response.data.locality
                 } catch {
                     this.activeColor = '#FF9494'
                     this.localisation = 'Error'
@@ -76,6 +76,7 @@
             },
             position() {
                 navigator.geolocation.getCurrentPosition(pos => {
+                    this.activeColor = '#000000'
                     this.fetchLatitude(pos.coords.latitude)
                     this.fetchLongitude(pos.coords.longitude)
                     this.fetchIsGpsOk(true)
