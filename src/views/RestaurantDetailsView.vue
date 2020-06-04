@@ -81,6 +81,7 @@
                             buttons: [{
                                 text: 'Yes',
                                 handler: () => {
+                                    this.$store.dispatch('fetchShowResult', false);
                                     this.$store.dispatch('addBooking', {
                                         idUser: this.idUser,
                                         idRestaurant: this.restaurant.id,
