@@ -4,8 +4,8 @@
             <ion-label>{{$t('bookingView.listHeader')}}</ion-label>
         </ion-list-header> -->
         <ion-item-divider>
-            <ion-label>
-                {{$t('bookingView.currentBooking')}}
+            <ion-label color="dark">
+                <strong style="font-size: 20px;">{{$t('bookingView.currentBooking')}}</strong>
             </ion-label>
         </ion-item-divider>
         <div v-for="(item, index) in listBooking"
@@ -13,8 +13,8 @@
             <BookingListItem v-bind:item="item" v-bind:is-disabled="false" v-on:reload="$emit('reload')"/>
         </div>
         <ion-item-divider>
-            <ion-label>
-                {{$t('bookingView.history')}}
+            <ion-label color="dark">
+                <strong style="font-size: 20px;">{{$t('bookingView.history')}}</strong>
             </ion-label>
         </ion-item-divider>
         <div v-for="(item, index) in listHistory"
