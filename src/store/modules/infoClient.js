@@ -51,6 +51,9 @@ const actions = {
     async fetchIsGpsOk({commit}, isOk) {
         commit('setIsGpsOk',isOk)
     },
+    async fetchShowResult({commit}, isShowingResult) {
+        commit('setShowResult', isShowingResult)
+    },
 };
 const mutations = {
     setLocalisation: (state, loc) => (state.localisation = loc),
