@@ -11,7 +11,7 @@
     "@ionic-native/core": "^5.22.0-beta-1",
     "@ionic-native/google-maps": "^5.0.0-beta.27",
     "@ionic/vue": "0.0.4",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "core-js": "^3.6.4",
     "google-maps-api-loader": "^1.1.1",
     "ionicons": "^4.5.9-1",
